@@ -29,6 +29,7 @@
 		64ABD15018FF24DF00B2E420 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD14F18FF24DF00B2E420 /* QuartzCore.framework */; };
 		64ABD15218FF24E500B2E420 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD15118FF24E400B2E420 /* AVFoundation.framework */; };
 		64ABD1A618FFFBD800B2E420 /* ParentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ABD1A518FFFBD800B2E420 /* ParentVC.m */; };
+		64C9834B1A6F244500462D95 /* Cool Camera Mockup.sketch in Resources */ = {isa = PBXBuildFile; fileRef = 64C9834A1A6F244500462D95 /* Cool Camera Mockup.sketch */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		64ABD15118FF24E400B2E420 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		64ABD1A418FFFBD800B2E420 /* ParentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentVC.h; sourceTree = "<group>"; };
 		64ABD1A518FFFBD800B2E420 /* ParentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentVC.m; sourceTree = "<group>"; };
+		64C9834A1A6F244500462D95 /* Cool Camera Mockup.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cool Camera Mockup.sketch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,14 +142,10 @@
 		64ABD11318FF19E000B2E420 /* CameraWithAVFoundation */ = {
 			isa = PBXGroup;
 			children = (
-				64ABD11F18FF19E000B2E420 /* Main_iPhone.storyboard */,
-				64ABD12218FF19E000B2E420 /* Main_iPad.storyboard */,
-				64ABD1A418FFFBD800B2E420 /* ParentVC.h */,
-				64ABD1A518FFFBD800B2E420 /* ParentVC.m */,
-				64ABD12518FF19E000B2E420 /* CameraViewController.h */,
-				64ABD12618FF19E000B2E420 /* CameraViewController.m */,
-				64ABD14C18FF215A00B2E420 /* CaptureSessionManager.h */,
-				64ABD14D18FF215A00B2E420 /* CaptureSessionManager.m */,
+				64C983491A6F242E00462D95 /* Graphical Assets */,
+				64C983481A6F241A00462D95 /* StoryBoard */,
+				64C983471A6F240700462D95 /* Model Classes */,
+				64C983461A6F23EF00462D95 /* View Controllers */,
 				64ABD12818FF19E000B2E420 /* Images.xcassets */,
 				64ABD11418FF19E000B2E420 /* Supporting Files */,
 			);
@@ -183,6 +181,43 @@
 				64ABD13818FF19E000B2E420 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		64C983461A6F23EF00462D95 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				64ABD1A418FFFBD800B2E420 /* ParentVC.h */,
+				64ABD1A518FFFBD800B2E420 /* ParentVC.m */,
+				64ABD12518FF19E000B2E420 /* CameraViewController.h */,
+				64ABD12618FF19E000B2E420 /* CameraViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		64C983471A6F240700462D95 /* Model Classes */ = {
+			isa = PBXGroup;
+			children = (
+				64ABD14C18FF215A00B2E420 /* CaptureSessionManager.h */,
+				64ABD14D18FF215A00B2E420 /* CaptureSessionManager.m */,
+			);
+			name = "Model Classes";
+			sourceTree = "<group>";
+		};
+		64C983481A6F241A00462D95 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				64ABD11F18FF19E000B2E420 /* Main_iPhone.storyboard */,
+				64ABD12218FF19E000B2E420 /* Main_iPad.storyboard */,
+			);
+			name = StoryBoard;
+			sourceTree = "<group>";
+		};
+		64C983491A6F242E00462D95 /* Graphical Assets */ = {
+			isa = PBXGroup;
+			children = (
+				64C9834A1A6F244500462D95 /* Cool Camera Mockup.sketch */,
+			);
+			name = "Graphical Assets";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +300,7 @@
 				64ABD12418FF19E000B2E420 /* Main_iPad.storyboard in Resources */,
 				64ABD12918FF19E000B2E420 /* Images.xcassets in Resources */,
 				64ABD12118FF19E000B2E420 /* Main_iPhone.storyboard in Resources */,
+				64C9834B1A6F244500462D95 /* Cool Camera Mockup.sketch in Resources */,
 				64ABD11818FF19E000B2E420 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
