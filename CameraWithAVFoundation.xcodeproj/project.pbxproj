@@ -30,6 +30,7 @@
 		64ABD15218FF24E500B2E420 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD15118FF24E400B2E420 /* AVFoundation.framework */; };
 		64ABD1A618FFFBD800B2E420 /* ParentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ABD1A518FFFBD800B2E420 /* ParentVC.m */; };
 		64C9834B1A6F244500462D95 /* Cool Camera Mockup.sketch in Resources */ = {isa = PBXBuildFile; fileRef = 64C9834A1A6F244500462D95 /* Cool Camera Mockup.sketch */; };
+		64C9834D1A6F251100462D95 /* PaintCodeFile.pcvd in Resources */ = {isa = PBXBuildFile; fileRef = 64C9834C1A6F251100462D95 /* PaintCodeFile.pcvd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		64ABD1A418FFFBD800B2E420 /* ParentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentVC.h; sourceTree = "<group>"; };
 		64ABD1A518FFFBD800B2E420 /* ParentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentVC.m; sourceTree = "<group>"; };
 		64C9834A1A6F244500462D95 /* Cool Camera Mockup.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cool Camera Mockup.sketch"; sourceTree = "<group>"; };
+		64C9834C1A6F251100462D95 /* PaintCodeFile.pcvd */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = PaintCodeFile.pcvd; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +217,7 @@
 		64C983491A6F242E00462D95 /* Graphical Assets */ = {
 			isa = PBXGroup;
 			children = (
+				64C9834C1A6F251100462D95 /* PaintCodeFile.pcvd */,
 				64C9834A1A6F244500462D95 /* Cool Camera Mockup.sketch */,
 			);
 			name = "Graphical Assets";
@@ -297,6 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64C9834D1A6F251100462D95 /* PaintCodeFile.pcvd in Resources */,
 				64ABD12418FF19E000B2E420 /* Main_iPad.storyboard in Resources */,
 				64ABD12918FF19E000B2E420 /* Images.xcassets in Resources */,
 				64ABD12118FF19E000B2E420 /* Main_iPhone.storyboard in Resources */,
