@@ -17,53 +17,55 @@
 
 @implementation CameraViewController
 
-@synthesize captureManager;
-@synthesize scanningLabel;
-
 - (void)viewDidLoad {
     
-	[self setCaptureManager:[[CaptureSessionManager alloc] init]];
-    
-	[[self captureManager] addVideoInputFrontCamera:NO]; // set to YES for Front Camera, No for Back camera
-    
-    [[self captureManager] addStillImageOutput];
-    
-	[[self captureManager] addVideoPreviewLayer];
-	CGRect layerRect = [[[self view] layer] bounds];
-    [[[self captureManager] previewLayer] setBounds:layerRect];
-    [[[self captureManager] previewLayer] setPosition:CGPointMake(CGRectGetMidX(layerRect),CGRectGetMidY(layerRect))];
-	[[[self view] layer] addSublayer:[[self captureManager] previewLayer]];
-    
-    UIImageView *overlayImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"overlaygraphic"]];
-    [overlayImageView setFrame:CGRectMake(30, 100, 260, 200)];
-    [[self view] addSubview:overlayImageView];
-    
-    UIButton *overlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [overlayButton setImage:[UIImage imageNamed:@"scanbutton"] forState:UIControlStateNormal];
-    [overlayButton setFrame:CGRectMake(130, 410, 60, 60)];
-    [overlayButton addTarget:self action:@selector(scanButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [[self view] addSubview:overlayButton];
-    
-    
-    
-    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 120, 30)];
-    [self setScanningLabel:tempLabel];
-	[scanningLabel setBackgroundColor:[UIColor clearColor]];
-	[scanningLabel setFont:[UIFont fontWithName:@"Courier" size: 18.0]];
-	[scanningLabel setTextColor:[UIColor redColor]];
-	[scanningLabel setText:@"Saving..."];
-    [scanningLabel setHidden:YES];
-	[[self view] addSubview:scanningLabel];
+    [self setupCaptureManager];
+    [self composeOverlayInterface];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveImageToPhotoAlbum) name:kImageCapturedSuccessfully object:nil];
 
-	[[captureManager captureSession] startRunning];
+	[[_captureManager captureSession] startRunning];
 }
 
-- (void)scanButtonPressed {
+#pragma mark - Setup
+
+-(void)setupCaptureManager {
+    
+    _captureManager = [CaptureSessionManager new];
+    
+    [_captureManager addVideoInputFrontCamera:NO];
+    [_captureManager addStillImageOutput];
+    [_captureManager addVideoPreviewLayer];
+    
+    CGRect layerRect = self.view.layer.bounds;
+    [_captureManager.previewLayer setBounds:layerRect];
+    [_captureManager.previewLayer setPosition:CGPointMake(CGRectGetMidX(layerRect),CGRectGetMidY(layerRect))];
+    
+    [self.view.layer addSublayer:_captureManager.previewLayer];
+}
+
+-(void)composeOverlayInterface {
+    
+    //Create programmatic shutter button
+    UIButton *shutterButton; {
+        
+        //Button Visual attribution
+        CGSize size                         = CGSizeMake(60, 60);
+        shutterButton                       = [[UIButton alloc] initWithFrame:(CGRect){0,0, size}];
+        shutterButton.center                = CGPointMake(self.view.center.x, self.view.center.y*1.75);
+        shutterButton.backgroundColor       = [[UIColor redColor] colorWithAlphaComponent:.5];
+        shutterButton.layer.cornerRadius    = size.height/2;
+        shutterButton.clipsToBounds         = YES;
+        
+        //Button target
+        [shutterButton addTarget:self action:@selector(shutterButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:shutterButton];
+    }
+}
+
+- (void)shutterButtonPressed:(id)sender {
 	[[self scanningLabel] setHidden:NO];
-    [[self captureManager] captureStillImage];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [_captureManager captureStillImage];
 }
 
 - (void)saveImageToPhotoAlbum
@@ -87,8 +89,8 @@
 }
 
 - (void)dealloc {
-    captureManager = nil;
-    scanningLabel = nil;
+    _captureManager = nil;
+    _scanningLabel = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
