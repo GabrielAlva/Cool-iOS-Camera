@@ -64,8 +64,24 @@
 }
 
 - (void)shutterButtonPressed:(id)sender {
+    
+    // Animate shutter release
+    if ([sender isKindOfClass:[UIButton class]]) {
+        UIButton *button = (UIButton *)sender;
+        [UIView animateWithDuration:.1 animations:^{
+            self.view.alpha = 0;
+            button.transform = CGAffineTransformMakeScale(1.25, 1.25);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:.1 animations:^{
+                self.view.alpha = 1;
+                button.transform = CGAffineTransformMakeScale(1, 1);
+            }];
+        }];
+    }
+
 	[[self scanningLabel] setHidden:NO];
     [_captureManager captureStillImage];
+     
 }
 
 - (void)saveImageToPhotoAlbum
@@ -89,6 +105,7 @@
 }
 
 - (void)dealloc {
+    
     _captureManager = nil;
     _scanningLabel = nil;
 }
