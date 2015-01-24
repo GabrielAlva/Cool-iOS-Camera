@@ -15,17 +15,16 @@
 #import "CameraFlashButton.h"
 #import "CameraDismissButton.h"
 #import "CameraTopBarView.h"
+#import "Constants.h"
 
 @interface CameraSessionView ()
-{
-    CameraShutterButton *cameraShutter;
-    CameraFlashButton *cameraFlash;
-    CameraToggleButton *cameraToggle;
-    CameraDismissButton *cameraDismiss;
-    CameraTopBarView *topBarView;
-}
 
 @property (nonatomic, strong) CaptureSessionManager *captureManager;
+@property (nonatomic, strong) CameraShutterButton   *cameraShutter;
+@property (nonatomic, strong) CameraToggleButton    *cameraToggle;
+@property (nonatomic, strong) CameraFlashButton     *cameraFlash;
+@property (nonatomic, strong) CameraDismissButton   *cameraDismiss;
+@property (nonatomic, strong) CameraTopBarView      *topBarView;
 
 @end
 
@@ -51,10 +50,7 @@
 -(void)setupCaptureManager {
     
     //Create and configure 'CaptureSessionManager' object
-    CaptureSessionManager *captureManager; {
-        
-        //Alloc/Init
-        captureManager = [CaptureSessionManager new];
+    CaptureSessionManager *captureManager = [CaptureSessionManager new]; {
         
         //Configure
         [captureManager addVideoInputFrontCamera:NO];
@@ -72,67 +68,68 @@
         //Retain strong reference to object
         _captureManager = captureManager;
     }
-    
 }
 
 -(void)composeInterface {
     
     //Create programmatic shutter button
-    CGSize shutterSize                             = CGSizeMake(70, 70);
-    cameraShutter = [[CameraShutterButton alloc] initWithFrame:(CGRect){0,0, shutterSize}]; {
+    _cameraShutter = [CameraShutterButton new]; {
         
         //Button Visual attribution
-        cameraShutter.center                = CGPointMake(self.center.x, self.center.y*1.75);
-        cameraShutter.backgroundColor       = [UIColor clearColor];
+        _cameraShutter.frame            = (CGRect){0,0, IPHONE_SHUTTER_BUTTON_SIZE};
+        _cameraShutter.center           = CGPointMake(self.center.x, self.center.y*1.75);
+        _cameraShutter.backgroundColor  = [UIColor clearColor];
         
         //Button target
-        [cameraShutter addTarget:self action:@selector(shutterButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:cameraShutter];
+        [_cameraShutter addTarget:self action:@selector(shutterButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_cameraShutter];
     }
     
     //Create the top bar and add the buttons to it
-    CGSize topBarSize                            = CGSizeMake(self.frame.size.width, 45);
-    topBarView = [[CameraTopBarView alloc] initWithFrame:(CGRect){0,0, topBarSize}]; {
-        topBarView.backgroundColor       = [UIColor clearColor];
-        [self addSubview:topBarView];
+    _topBarView = [CameraTopBarView new]; {
+        
+        //Setup visual attribution
+        _topBarView.frame               = (CGRect){0,0, IPHONE_OVERLAY_BAR_SIZE};
+        _topBarView.backgroundColor     = [UIColor clearColor];
+        [self addSubview:_topBarView];
         
         //Add the flash button
-        CGSize flashButtonSize                             = CGSizeMake(27, 27);
-        cameraFlash = [[CameraFlashButton alloc] initWithFrame:(CGRect){0,0, flashButtonSize}]; {
+        _cameraFlash = [CameraFlashButton new]; {
             
             //Button Visual attribution
-            cameraFlash.center                = CGPointMake(topBarView.center.x * 0.80, topBarView.center.y);
-            cameraFlash.backgroundColor       = [UIColor clearColor];
+            _cameraFlash.frame              = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
+            _cameraFlash.center             = CGPointMake(_topBarView.center.x * 0.80, _topBarView.center.y);
+            _cameraFlash.backgroundColor    = [UIColor clearColor];
             
             //Button target
-            [cameraFlash addTarget:self action:@selector(flashButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-            [topBarView addSubview:cameraFlash];
+            [_cameraFlash addTarget:self action:@selector(flashButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [_topBarView addSubview:_cameraFlash];
         }
         
         //Add the camera toggle button
-        CGSize toggleButtonSize                             = CGSizeMake(27, 27);
-        cameraToggle = [[CameraToggleButton alloc] initWithFrame:(CGRect){0,0, toggleButtonSize}]; {
+        _cameraToggle = [CameraToggleButton new]; {
             
             //Button Visual attribution
-            cameraToggle.center                = CGPointMake(topBarView.center.x * 1.20, topBarView.center.y);
-            cameraToggle.backgroundColor       = [UIColor clearColor];
+            _cameraToggle.frame             = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
+            _cameraToggle.center            = CGPointMake(_topBarView.center.x * 1.20, _topBarView.center.y);
+            _cameraToggle.backgroundColor   = [UIColor clearColor];
             
             //Button target
-            [cameraToggle addTarget:self action:@selector(toggleButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-            [topBarView addSubview:cameraToggle];
+            [_cameraToggle addTarget:self action:@selector(toggleButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [_topBarView addSubview:_cameraToggle];
         }
         
         //Add the camera dismiss button
-        CGSize dismissButtonSize                             = CGSizeMake(27, 27);
-        cameraDismiss = [[CameraDismissButton alloc] initWithFrame:(CGRect){0,0, dismissButtonSize}]; {
+        _cameraDismiss = [CameraDismissButton new]; {
             
             //Button Visual attribution
-            cameraDismiss.center                = CGPointMake(20, topBarView.center.y);
-            cameraDismiss.backgroundColor       = [UIColor clearColor];
+            _cameraDismiss.frame            = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
+            _cameraDismiss.center           = CGPointMake(20, _topBarView.center.y);
+            _cameraDismiss.backgroundColor  = [UIColor clearColor];
             
             //Button target
-            [cameraDismiss addTarget:self action:@selector(dismissButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-            [topBarView addSubview:cameraDismiss];
+            [_cameraDismiss addTarget:self action:@selector(dismissButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [_topBarView addSubview:_cameraDismiss];
         }
     }
 }
