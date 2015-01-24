@@ -15,6 +15,7 @@
 @property (retain) AVCaptureSession *captureSession;
 @property (retain) AVCaptureStillImageOutput *stillImageOutput;
 @property (nonatomic, retain) UIImage *stillImage;
+@property (nonatomic,assign,getter=isTorchEnabled) BOOL enableTorch;
 
 - (void)addStillImageOutput;
 - (void)captureStillImage;
