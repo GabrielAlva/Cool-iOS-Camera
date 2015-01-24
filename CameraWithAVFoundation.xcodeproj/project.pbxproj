@@ -31,6 +31,12 @@
 		64ABD15218FF24E500B2E420 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD15118FF24E400B2E420 /* AVFoundation.framework */; };
 		64C9834B1A6F244500462D95 /* Cool Camera Mockup.sketch in Resources */ = {isa = PBXBuildFile; fileRef = 64C9834A1A6F244500462D95 /* Cool Camera Mockup.sketch */; };
 		64C9834D1A6F251100462D95 /* PaintCodeFile.pcvd in Resources */ = {isa = PBXBuildFile; fileRef = 64C9834C1A6F251100462D95 /* PaintCodeFile.pcvd */; };
+		64D101CE1A74351600316FAA /* CameraStyleKitClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101CD1A74351600316FAA /* CameraStyleKitClass.m */; };
+		64D101D11A7437D300316FAA /* CameraShutterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101D01A7437D300316FAA /* CameraShutterButton.m */; };
+		64D101D51A7439B900316FAA /* CameraFlashButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101D41A7439B900316FAA /* CameraFlashButton.m */; };
+		64D101D81A7439C400316FAA /* CameraToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101D71A7439C400316FAA /* CameraToggleButton.m */; };
+		64D101DB1A7439D100316FAA /* CameraDismissButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101DA1A7439D100316FAA /* CameraDismissButton.m */; };
+		64D101DE1A743C0600316FAA /* CameraTopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101DD1A743C0600316FAA /* CameraTopBarView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +81,18 @@
 		64ABD15118FF24E400B2E420 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		64C9834A1A6F244500462D95 /* Cool Camera Mockup.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cool Camera Mockup.sketch"; sourceTree = "<group>"; };
 		64C9834C1A6F251100462D95 /* PaintCodeFile.pcvd */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = PaintCodeFile.pcvd; sourceTree = "<group>"; };
+		64D101CC1A74351600316FAA /* CameraStyleKitClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraStyleKitClass.h; sourceTree = "<group>"; };
+		64D101CD1A74351600316FAA /* CameraStyleKitClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraStyleKitClass.m; sourceTree = "<group>"; };
+		64D101CF1A7437D300316FAA /* CameraShutterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraShutterButton.h; sourceTree = "<group>"; };
+		64D101D01A7437D300316FAA /* CameraShutterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraShutterButton.m; sourceTree = "<group>"; };
+		64D101D31A7439B900316FAA /* CameraFlashButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFlashButton.h; sourceTree = "<group>"; };
+		64D101D41A7439B900316FAA /* CameraFlashButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraFlashButton.m; sourceTree = "<group>"; };
+		64D101D61A7439C400316FAA /* CameraToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraToggleButton.h; sourceTree = "<group>"; };
+		64D101D71A7439C400316FAA /* CameraToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraToggleButton.m; sourceTree = "<group>"; };
+		64D101D91A7439D100316FAA /* CameraDismissButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraDismissButton.h; sourceTree = "<group>"; };
+		64D101DA1A7439D100316FAA /* CameraDismissButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraDismissButton.m; sourceTree = "<group>"; };
+		64D101DC1A743C0600316FAA /* CameraTopBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraTopBarView.h; sourceTree = "<group>"; };
+		64D101DD1A743C0600316FAA /* CameraTopBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraTopBarView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,10 +235,38 @@
 		64C983491A6F242E00462D95 /* Graphical Assets */ = {
 			isa = PBXGroup;
 			children = (
+				64D101D21A7437E000316FAA /* CameraViewComponents */,
+				64D101CB1A742EEC00316FAA /* UI Assets */,
 				64C9834C1A6F251100462D95 /* PaintCodeFile.pcvd */,
 				64C9834A1A6F244500462D95 /* Cool Camera Mockup.sketch */,
 			);
 			name = "Graphical Assets";
+			sourceTree = "<group>";
+		};
+		64D101CB1A742EEC00316FAA /* UI Assets */ = {
+			isa = PBXGroup;
+			children = (
+				64D101CC1A74351600316FAA /* CameraStyleKitClass.h */,
+				64D101CD1A74351600316FAA /* CameraStyleKitClass.m */,
+			);
+			name = "UI Assets";
+			sourceTree = "<group>";
+		};
+		64D101D21A7437E000316FAA /* CameraViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				64D101CF1A7437D300316FAA /* CameraShutterButton.h */,
+				64D101D01A7437D300316FAA /* CameraShutterButton.m */,
+				64D101D31A7439B900316FAA /* CameraFlashButton.h */,
+				64D101D41A7439B900316FAA /* CameraFlashButton.m */,
+				64D101D61A7439C400316FAA /* CameraToggleButton.h */,
+				64D101D71A7439C400316FAA /* CameraToggleButton.m */,
+				64D101D91A7439D100316FAA /* CameraDismissButton.h */,
+				64D101DA1A7439D100316FAA /* CameraDismissButton.m */,
+				64D101DC1A743C0600316FAA /* CameraTopBarView.h */,
+				64D101DD1A743C0600316FAA /* CameraTopBarView.m */,
+			);
+			name = CameraViewComponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,9 +371,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				64ABD12718FF19E000B2E420 /* CameraViewController.m in Sources */,
+				64D101D51A7439B900316FAA /* CameraFlashButton.m in Sources */,
+				64D101DE1A743C0600316FAA /* CameraTopBarView.m in Sources */,
 				1B472D891A729EB000C85DAB /* CameraSessionView.m in Sources */,
+				64D101DB1A7439D100316FAA /* CameraDismissButton.m in Sources */,
 				64ABD14E18FF215A00B2E420 /* CaptureSessionManager.m in Sources */,
 				64ABD11A18FF19E000B2E420 /* main.m in Sources */,
+				64D101D11A7437D300316FAA /* CameraShutterButton.m in Sources */,
+				64D101D81A7439C400316FAA /* CameraToggleButton.m in Sources */,
+				64D101CE1A74351600316FAA /* CameraStyleKitClass.m in Sources */,
 				64ABD11E18FF19E000B2E420 /* CameraAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

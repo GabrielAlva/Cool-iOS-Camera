@@ -19,8 +19,16 @@
     
     [super viewDidLoad];
     
+    //Set white status bar
+    [self setNeedsStatusBarAppearanceUpdate];
+    
+    //Instantiate the camera view
     CameraSessionView *cameraView = [[CameraSessionView alloc] initWithFrame:self.view.frame];
     [self.view insertSubview:cameraView atIndex:0];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 @end
