@@ -214,5 +214,24 @@
     stillImage = nil;
 }
 
+- (void)setEnableTorch:(BOOL)enableTorch
+{
+    _enableTorch = enableTorch;
+    
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if ([device hasTorch] && [device hasFlash])
+    {
+        [device lockForConfiguration:nil];
+        if (enableTorch)
+        {
+            [device setTorchMode:AVCaptureTorchModeOn];
+        }
+        else
+        {
+            [device setTorchMode:AVCaptureTorchModeOff];
+        }
+        [device unlockForConfiguration];
+    }
+}
 
 @end

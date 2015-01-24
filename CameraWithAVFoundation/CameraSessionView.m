@@ -147,6 +147,8 @@
 }
 
 - (void)flashButtonPressed:(id)sender {
+    BOOL enable = !self.captureManager.isTorchEnabled;
+    self.captureManager.enableTorch = enable;
 }
 
 - (void)toggleButtonPressed:(id)sender {
