@@ -14,5 +14,11 @@
 #define IPHONE_OVERLAY_BAR_SIZE         CGSizeMake([[UIScreen mainScreen] bounds].size.width, 45)
 #define IPHONE_OVERLAY_BAR_BUTTON_SIZE  CGSizeMake(27, 27)
 
+typedef NS_ENUM(NSInteger, BarButtonTag) {
+    ShutterButtonTag,
+    ToggleButtonTag,
+    FlashButtonTag,
+    DismissButtonTag,
+};
 
 @end

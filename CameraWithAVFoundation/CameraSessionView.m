@@ -19,6 +19,10 @@
 
 @interface CameraSessionView ()
 
+//Primative Properties
+@property (readwrite) BOOL animationInProgress;
+
+//Object References
 @property (nonatomic, strong) CaptureSessionManager *captureManager;
 @property (nonatomic, strong) CameraShutterButton   *cameraShutter;
 @property (nonatomic, strong) CameraToggleButton    *cameraToggle;
@@ -33,7 +37,7 @@
 -(instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        
+        _animationInProgress = NO;
         [self setupCaptureManager];
         [self composeInterface];
         
@@ -81,81 +85,111 @@
         _cameraShutter.backgroundColor  = [UIColor clearColor];
         
         //Button target
-        [_cameraShutter addTarget:self action:@selector(shutterButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [_cameraShutter addTarget:self action:@selector(inputManager:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_cameraShutter];
     }
     
     //Create the top bar and add the buttons to it
     _topBarView = [CameraTopBarView new]; {
         
-        //Setup visual attribution
+        //Setup visual attribution for bar
         _topBarView.frame               = (CGRect){0,0, IPHONE_OVERLAY_BAR_SIZE};
         _topBarView.backgroundColor     = [UIColor clearColor];
         [self addSubview:_topBarView];
         
         //Add the flash button
         _cameraFlash = [CameraFlashButton new]; {
-            
-            //Button Visual attribution
-            _cameraFlash.frame              = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
-            _cameraFlash.center             = CGPointMake(_topBarView.center.x * 0.80, _topBarView.center.y);
-            _cameraFlash.backgroundColor    = [UIColor clearColor];
-            
-            //Button target
-            [_cameraFlash addTarget:self action:@selector(flashButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            _cameraFlash.frame  = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
+            _cameraFlash.center = CGPointMake(_topBarView.center.x * 0.80, _topBarView.center.y);
+            _cameraFlash.tag    = FlashButtonTag;
             [_topBarView addSubview:_cameraFlash];
         }
         
         //Add the camera toggle button
         _cameraToggle = [CameraToggleButton new]; {
-            
-            //Button Visual attribution
-            _cameraToggle.frame             = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
-            _cameraToggle.center            = CGPointMake(_topBarView.center.x * 1.20, _topBarView.center.y);
-            _cameraToggle.backgroundColor   = [UIColor clearColor];
-            
-            //Button target
-            [_cameraToggle addTarget:self action:@selector(toggleButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            _cameraToggle.frame     = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
+            _cameraToggle.center    = CGPointMake(_topBarView.center.x * 1.20, _topBarView.center.y);
+            _cameraToggle.tag       = ToggleButtonTag;
             [_topBarView addSubview:_cameraToggle];
         }
         
         //Add the camera dismiss button
         _cameraDismiss = [CameraDismissButton new]; {
-            
-            //Button Visual attribution
-            _cameraDismiss.frame            = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
-            _cameraDismiss.center           = CGPointMake(20, _topBarView.center.y);
-            _cameraDismiss.backgroundColor  = [UIColor clearColor];
-            
-            //Button target
-            [_cameraDismiss addTarget:self action:@selector(dismissButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            _cameraDismiss.frame    = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
+            _cameraDismiss.center   = CGPointMake(20, _topBarView.center.y);
+            _cameraDismiss.tag      = DismissButtonTag;
             [_topBarView addSubview:_cameraDismiss];
+        }
+        
+        //Attribute and configure all buttons in the bar's subview
+        for (UIButton *button in _topBarView.subviews) {
+            button.backgroundColor = [UIColor clearColor];
+            [button addTarget:self action:@selector(inputManager:) forControlEvents:UIControlEventTouchUpInside];
         }
     }
 }
 
-- (void)shutterButtonPressed:(id)sender {
+#pragma mark - User Interaction
+
+-(void)inputManager:(id)sender {
+    
+    //If animation is in progress, ignore input
+    if (_animationInProgress) return;
     
     //If sender is not a UIButton object, return
     if (![sender isKindOfClass:[UIButton class]]) return;
     
+    //Input manager switch
+    switch ([(UIButton *)sender tag]) {
+        case ShutterButtonTag:  [self onTapShutterButton];  return;
+        case ToggleButtonTag:   [self onTapToggleButton];   return;
+        case FlashButtonTag:    [self onTapFlashButton];    return;
+        case DismissButtonTag:  [self onTapDismissButton];  return;
+    }
+}
+
+- (void)onTapShutterButton {
+    
     //Animate shutter release
-    [self animateShutterRelease:(UIButton *)sender];
+    [self animateShutterRelease];
     
     //Capture image from camera
     [_captureManager captureStillImage];
 }
 
-- (void)flashButtonPressed:(id)sender {
+- (void)onTapFlashButton {
     BOOL enable = !self.captureManager.isTorchEnabled;
     self.captureManager.enableTorch = enable;
 }
 
-- (void)toggleButtonPressed:(id)sender {
+- (void)onTapToggleButton {
 }
 
-- (void)dismissButtonPressed:(id)sender {
+- (void)onTapDismissButton {
 }
+
+
+#pragma mark - Animation
+
+- (void)animateShutterRelease {
+    
+    _animationInProgress = YES; //Disables input manager
+    
+    [UIView animateWithDuration:.1 animations:^{
+        self.alpha = 0;
+        _cameraShutter.transform = CGAffineTransformMakeScale(1.25, 1.25);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:.1 animations:^{
+            self.alpha = 1;
+            _cameraShutter.transform = CGAffineTransformMakeScale(1, 1);
+        } completion:^(BOOL finished) {
+            
+            _animationInProgress = NO; //Enables input manager
+        }];
+    }];
+}
+
+#pragma mark - Helper Methods
 
 - (void)saveImageToPhotoAlbum
 {
@@ -181,21 +215,6 @@
 -(NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
-}
-
-#pragma mark - Animation
-
-- (void)animateShutterRelease:(UIButton *)shutterButton {
-    
-    [UIView animateWithDuration:.1 animations:^{
-        self.alpha = 0;
-        shutterButton.transform = CGAffineTransformMakeScale(1.25, 1.25);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:.1 animations:^{
-            self.alpha = 1;
-            shutterButton.transform = CGAffineTransformMakeScale(1, 1);
-        }];
-    }];
 }
 
 /*
