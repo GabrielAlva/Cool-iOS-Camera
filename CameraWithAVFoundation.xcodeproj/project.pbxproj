@@ -52,6 +52,7 @@
 /* Begin PBXFileReference section */
 		1B472D871A729EB000C85DAB /* CameraSessionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSessionView.h; sourceTree = "<group>"; };
 		1B472D881A729EB000C85DAB /* CameraSessionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraSessionView.m; sourceTree = "<group>"; };
+		1BDD39D11A745E6700A200BA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		64ABD10A18FF19E000B2E420 /* CameraWithAVFoundation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraWithAVFoundation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64ABD10D18FF19E000B2E420 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		64ABD10F18FF19E000B2E420 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -217,6 +218,7 @@
 		64C983471A6F240700462D95 /* Model Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1BDD39D11A745E6700A200BA /* Constants.h */,
 				64ABD14C18FF215A00B2E420 /* CaptureSessionManager.h */,
 				64ABD14D18FF215A00B2E420 /* CaptureSessionManager.m */,
 			);
@@ -518,6 +520,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CameraWithAVFoundation/CameraWithAVFoundation-Prefix.pch";
 				INFOPLIST_FILE = "CameraWithAVFoundation/CameraWithAVFoundation-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -531,6 +534,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CameraWithAVFoundation/CameraWithAVFoundation-Prefix.pch";
 				INFOPLIST_FILE = "CameraWithAVFoundation/CameraWithAVFoundation-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
