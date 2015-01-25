@@ -137,7 +137,7 @@
     //If animation is in progress, ignore input
     if (_animationInProgress) return;
     
-    //If sender is does not inherit from 'UIButton', return
+    //If sender does not inherit from 'UIButton', return
     if (![sender isKindOfClass:[UIButton class]]) return;
     
     //Input manager switch
