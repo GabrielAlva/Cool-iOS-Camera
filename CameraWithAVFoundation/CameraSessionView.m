@@ -76,12 +76,13 @@
 
 -(void)composeInterface {
     
-    //Create programmatic shutter button
+    //Create shutter button
     _cameraShutter = [CameraShutterButton new]; {
         
         //Button Visual attribution
         _cameraShutter.frame            = (CGRect){0,0, IPHONE_SHUTTER_BUTTON_SIZE};
         _cameraShutter.center           = CGPointMake(self.center.x, self.center.y*1.75);
+        _cameraShutter.tag              = ShutterButtonTag;
         _cameraShutter.backgroundColor  = [UIColor clearColor];
         
         //Button target
@@ -136,7 +137,7 @@
     //If animation is in progress, ignore input
     if (_animationInProgress) return;
     
-    //If sender is not a UIButton object, return
+    //If sender is does not inherit from 'UIButton', return
     if (![sender isKindOfClass:[UIButton class]]) return;
     
     //Input manager switch
