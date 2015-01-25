@@ -166,7 +166,7 @@
 - (void)onTapToggleButton {
 }
 
-- (void)dismissButtonPressed:(id)sender {
+- (void)onTapDismissButton {
     [self removeFromSuperview];
 }
 
