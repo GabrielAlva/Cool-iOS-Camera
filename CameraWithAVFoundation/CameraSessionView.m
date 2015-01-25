@@ -158,6 +158,7 @@
 }
 
 - (void)dismissButtonPressed:(id)sender {
+    [self removeFromSuperview];
 }
 
 - (void)saveImageToPhotoAlbum
