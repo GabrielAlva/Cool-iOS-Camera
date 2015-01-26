@@ -193,15 +193,11 @@
     
     if ([sender isKindOfClass:[UITapGestureRecognizer class]]) {
         UITapGestureRecognizer *tap = sender;
-        if (tap.state == UIGestureRecognizerStateRecognized)
-        {
+        if (tap.state == UIGestureRecognizerStateRecognized) {
             CGPoint location = [sender locationInView:self];
             
-            [self focusIndicatorAnimateToPoint:location];
-            
-            [self focusAtPoint:location completionHandler:^
-             {
-                 [self focusIndicatorAnimateToPoint:location];
+            [self focusAtPoint:location completionHandler:^{
+                 [self animateFocusIndicatorToPoint:location];
              }];
         }
     }
@@ -227,21 +223,22 @@
     }];
 }
 
-- (void)focusIndicatorAnimateToPoint:(CGPoint)targetPoint
+- (void)animateFocusIndicatorToPoint:(CGPoint)targetPoint
 {
+    _animationInProgress = YES; //Disables input manager
+    
     [self.focusIndicator setCenter:targetPoint];
     self.focusIndicator.alpha = 0.0;
     self.focusIndicator.hidden = NO;
     
-    [UIView animateWithDuration:0.4 animations:^
-     {
+    [UIView animateWithDuration:0.4 animations:^{
          self.focusIndicator.alpha = 1.0;
-     }
-                     completion:^(BOOL finished)
-     {
-         [UIView animateWithDuration:0.4 animations:^
-          {
+     } completion:^(BOOL finished) {
+         [UIView animateWithDuration:0.4 animations:^{
               self.focusIndicator.alpha = 0.0;
+          }completion:^(BOOL finished) {
+              
+              _animationInProgress = NO; //Enables input manager
           }];
      }];
 }
@@ -255,25 +252,29 @@
     CGSize frameSize = self.bounds.size;
     pointOfInterest = CGPointMake(point.y / frameSize.height, 1.f - (point.x / frameSize.width));
     
-    if ([device isFocusPointOfInterestSupported] && [device isFocusModeSupported:AVCaptureFocusModeAutoFocus])
-    {
+    if ([device isFocusPointOfInterestSupported] && [device isFocusModeSupported:AVCaptureFocusModeAutoFocus]) {
+        
+        //Lock camera for configuration if possible
         NSError *error;
-        if ([device lockForConfiguration:&error])
-        {
-            if ([device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus])
-            {
-                [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
+        if ([device lockForConfiguration:&error]) {
+            
+            if ([device isWhiteBalanceModeSupported:AVCaptureWhiteBalanceModeAutoWhiteBalance]) {
+                [device setWhiteBalanceMode:AVCaptureWhiteBalanceModeAutoWhiteBalance];
+            }
+            
+            if ([device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus]) {
+                [device setFocusMode:AVCaptureFocusModeAutoFocus];
                 [device setFocusPointOfInterest:pointOfInterest];
             }
             
-            if([device isExposurePointOfInterestSupported] && [device isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure])
-            {
+            if([device isExposurePointOfInterestSupported] && [device isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure]) {
                 [device setExposurePointOfInterest:pointOfInterest];
                 [device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
-                completionHandler();
             }
             
             [device unlockForConfiguration];
+            
+            completionHandler();
         }
     }
     else { completionHandler(); }
