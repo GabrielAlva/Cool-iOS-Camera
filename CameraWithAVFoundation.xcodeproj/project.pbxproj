@@ -37,6 +37,7 @@
 		64D101D81A7439C400316FAA /* CameraToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101D71A7439C400316FAA /* CameraToggleButton.m */; };
 		64D101DB1A7439D100316FAA /* CameraDismissButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101DA1A7439D100316FAA /* CameraDismissButton.m */; };
 		64D101DE1A743C0600316FAA /* CameraTopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101DD1A743C0600316FAA /* CameraTopBarView.m */; };
+		64D101E11A75EA8A00316FAA /* CameraFocusIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101E01A75EA8A00316FAA /* CameraFocusIndicator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,8 @@
 		64D101DA1A7439D100316FAA /* CameraDismissButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraDismissButton.m; sourceTree = "<group>"; };
 		64D101DC1A743C0600316FAA /* CameraTopBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraTopBarView.h; sourceTree = "<group>"; };
 		64D101DD1A743C0600316FAA /* CameraTopBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraTopBarView.m; sourceTree = "<group>"; };
+		64D101DF1A75EA8A00316FAA /* CameraFocusIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFocusIndicator.h; sourceTree = "<group>"; };
+		64D101E01A75EA8A00316FAA /* CameraFocusIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraFocusIndicator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +270,8 @@
 				64D101DA1A7439D100316FAA /* CameraDismissButton.m */,
 				64D101DC1A743C0600316FAA /* CameraTopBarView.h */,
 				64D101DD1A743C0600316FAA /* CameraTopBarView.m */,
+				64D101DF1A75EA8A00316FAA /* CameraFocusIndicator.h */,
+				64D101E01A75EA8A00316FAA /* CameraFocusIndicator.m */,
 			);
 			name = CameraViewComponents;
 			sourceTree = "<group>";
@@ -383,6 +388,7 @@
 				64D101D81A7439C400316FAA /* CameraToggleButton.m in Sources */,
 				64D101CE1A74351600316FAA /* CameraStyleKitClass.m in Sources */,
 				64ABD11E18FF19E000B2E420 /* CameraAppDelegate.m in Sources */,
+				64D101E11A75EA8A00316FAA /* CameraFocusIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

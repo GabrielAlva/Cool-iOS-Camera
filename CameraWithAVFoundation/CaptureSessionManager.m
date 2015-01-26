@@ -134,6 +134,14 @@
     }
     
     [[self captureSession] addOutput:[self stillImageOutput]];
+    
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if ([device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus])
+    {
+        [device lockForConfiguration:nil];
+        [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
+        [device unlockForConfiguration];
+    }
 }
 
 - (void)captureStillImage
