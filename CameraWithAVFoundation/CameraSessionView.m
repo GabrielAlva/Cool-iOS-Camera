@@ -133,8 +133,8 @@
     
     //Create the focus indicator UIView
     _focusIndicator = [CameraFocusIndicator new]; {
-        
-        //Setup visual attribution for bar
+    
+        //Setup the attributes for the focus view
         _focusIndicator.frame               = (CGRect){0,0, 60, 60};
         _focusIndicator.backgroundColor     = [UIColor clearColor];
         _focusIndicator.hidden              = YES;
@@ -142,77 +142,11 @@
     }
     
     //Create the gesture recognizer for the focus tap
-    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusGesture:)];
-    [self addGestureRecognizer:singleTapGestureRecognizer];
-
-}
-
-- (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)())completionHandler
-{
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];;
-    CGPoint pointOfInterest = CGPointZero;
-    CGSize frameSize = self.bounds.size;
-    pointOfInterest = CGPointMake(point.y / frameSize.height, 1.f - (point.x / frameSize.width));
-    
-    if ([device isFocusPointOfInterestSupported] && [device isFocusModeSupported:AVCaptureFocusModeAutoFocus])
-    {
-        NSError *error;
-        if ([device lockForConfiguration:&error])
-        {
-            if ([device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus])
-            {
-                [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
-                [device setFocusPointOfInterest:pointOfInterest];
-            }
-            
-            if([device isExposurePointOfInterestSupported] && [device isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure])
-            {
-                [device setExposurePointOfInterest:pointOfInterest];
-                [device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
-                completionHandler();
-            }
-            
-            [device unlockForConfiguration];
-        }
+    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusGesture:)];{
+        [self addGestureRecognizer:singleTapGestureRecognizer];
     }
-    else { completionHandler(); }
-}
-
--(void)focusGesture:(id)sender {
     
-    if ([sender isKindOfClass:[UITapGestureRecognizer class]]) {
-        UITapGestureRecognizer *tap = sender;
-        if (tap.state == UIGestureRecognizerStateRecognized)
-        {
-            CGPoint location = [sender locationInView:self];
-            
-            [self focusIndicatorAnimateToPoint:location];
-            
-            [self focusAtPoint:location completionHandler:^
-             {
-                 [self focusIndicatorAnimateToPoint:location];
-             }];
-        }
-    }
-}
 
-- (void)focusIndicatorAnimateToPoint:(CGPoint)targetPoint
-{
-    [self.focusIndicator setCenter:targetPoint];
-    self.focusIndicator.alpha = 0.0;
-    self.focusIndicator.hidden = NO;
-    
-    [UIView animateWithDuration:0.4 animations:^
-     {
-         self.focusIndicator.alpha = 1.0;
-     }
-                     completion:^(BOOL finished)
-     {
-         [UIView animateWithDuration:0.4 animations:^
-          {
-              self.focusIndicator.alpha = 0.0;
-          }];
-     }];
 }
 
 #pragma mark - User Interaction
@@ -255,6 +189,23 @@
     [self removeFromSuperview];
 }
 
+- (void)focusGesture:(id)sender {
+    
+    if ([sender isKindOfClass:[UITapGestureRecognizer class]]) {
+        UITapGestureRecognizer *tap = sender;
+        if (tap.state == UIGestureRecognizerStateRecognized)
+        {
+            CGPoint location = [sender locationInView:self];
+            
+            [self focusIndicatorAnimateToPoint:location];
+            
+            [self focusAtPoint:location completionHandler:^
+             {
+                 [self focusIndicatorAnimateToPoint:location];
+             }];
+        }
+    }
+}
 
 #pragma mark - Animation
 
@@ -276,7 +227,57 @@
     }];
 }
 
+- (void)focusIndicatorAnimateToPoint:(CGPoint)targetPoint
+{
+    [self.focusIndicator setCenter:targetPoint];
+    self.focusIndicator.alpha = 0.0;
+    self.focusIndicator.hidden = NO;
+    
+    [UIView animateWithDuration:0.4 animations:^
+     {
+         self.focusIndicator.alpha = 1.0;
+     }
+                     completion:^(BOOL finished)
+     {
+         [UIView animateWithDuration:0.4 animations:^
+          {
+              self.focusIndicator.alpha = 0.0;
+          }];
+     }];
+}
+
 #pragma mark - Helper Methods
+
+- (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)())completionHandler
+{
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];;
+    CGPoint pointOfInterest = CGPointZero;
+    CGSize frameSize = self.bounds.size;
+    pointOfInterest = CGPointMake(point.y / frameSize.height, 1.f - (point.x / frameSize.width));
+    
+    if ([device isFocusPointOfInterestSupported] && [device isFocusModeSupported:AVCaptureFocusModeAutoFocus])
+    {
+        NSError *error;
+        if ([device lockForConfiguration:&error])
+        {
+            if ([device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus])
+            {
+                [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
+                [device setFocusPointOfInterest:pointOfInterest];
+            }
+            
+            if([device isExposurePointOfInterestSupported] && [device isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure])
+            {
+                [device setExposurePointOfInterest:pointOfInterest];
+                [device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
+                completionHandler();
+            }
+            
+            [device unlockForConfiguration];
+        }
+    }
+    else { completionHandler(); }
+}
 
 - (void)saveImageToPhotoAlbum
 {
