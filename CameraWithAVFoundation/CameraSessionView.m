@@ -18,7 +18,7 @@
 #import "CameraFocusIndicator.h"
 #import "Constants.h"
 
-@interface CameraSessionView ()
+@interface CameraSessionView () <CaptureSessionManagerDelegate>
 
 //Primative Properties
 @property (readwrite) BOOL animationInProgress;
@@ -43,9 +43,6 @@
         [self setupCaptureManager];
         [self composeInterface];
         
-#warning replace with delegate implementation
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveImageToPhotoAlbum) name:kImageCapturedSuccessfully object:nil];
-        
         [[_captureManager captureSession] startRunning];
     }
     return self;
@@ -62,6 +59,7 @@
         [captureManager addVideoInputFrontCamera:NO];
         [captureManager addStillImageOutput];
         [captureManager addVideoPreviewLayer];
+        [captureManager setDelegate:self];
         
         //Preview Layer setup
         CGRect layerRect = self.layer.bounds;
@@ -241,6 +239,17 @@
               _animationInProgress = NO; //Enables input manager
           }];
      }];
+}
+
+#pragma mark - Camera Session Manager Delegate Methods
+
+-(void)cameraSessionManagerDidCaptureImage {
+    NSLog(@"SUCEEDED IN CAPTURING IMAGE");
+    [self saveImageToPhotoAlbum];
+}
+
+-(void)cameraSessionManagerFailedToCaptureImage {
+    NSLog(@"FAILED TO CAPTURE IMAGE");
 }
 
 #pragma mark - Helper Methods

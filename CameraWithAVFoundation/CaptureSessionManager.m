@@ -29,7 +29,6 @@
 - (void)addVideoPreviewLayer {
 	[self setPreviewLayer:[[AVCaptureVideoPreviewLayer alloc] initWithSession:[self captureSession]]];
 	[[self previewLayer] setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    
 }
 
 - (void)addVideoInputFrontCamera:(BOOL)front {
@@ -37,21 +36,10 @@
     AVCaptureDevice *frontCamera;
     AVCaptureDevice *backCamera;
     
-    for (AVCaptureDevice *device in devices) {
-        
-        NSLog(@"Device name: %@", [device localizedName]);
-        
-        if ([device hasMediaType:AVMediaTypeVideo]) {
-            
-            if ([device position] == AVCaptureDevicePositionBack) {
-                NSLog(@"Device position : back");
-                backCamera = device;
-            }
-            else {
-                NSLog(@"Device position : front");
-                frontCamera = device;
-            }
-        }
+    //Iterate through devices and identify those of 'AVMediaTypeVideo' media type
+    for (AVCaptureDevice *device in devices) if ([device hasMediaType:AVMediaTypeVideo]) {
+        if ([device position] == AVCaptureDevicePositionBack) backCamera = device;
+        else frontCamera = device;
     }
     
     NSError *error = nil;
@@ -59,20 +47,15 @@
     if (front) {
         AVCaptureDeviceInput *frontFacingCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:frontCamera error:&error];
         if (!error) {
-            if ([[self captureSession] canAddInput:frontFacingCameraDeviceInput]) {
-                [[self captureSession] addInput:frontFacingCameraDeviceInput];
-            } else {
-                NSLog(@"Couldn't add front facing video input");
-            }
+            if ([[self captureSession] canAddInput:frontFacingCameraDeviceInput]) [[self captureSession] addInput:frontFacingCameraDeviceInput];
+            else if (self.delegate) [self.delegate cameraSessionManagerCannotAccessFrontFacingCamera];
         }
     } else {
         AVCaptureDeviceInput *backFacingCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:&error];
         if (!error) {
-            if ([[self captureSession] canAddInput:backFacingCameraDeviceInput]) {
-                [[self captureSession] addInput:backFacingCameraDeviceInput];
-            } else {
-                NSLog(@"Couldn't add back facing video input");
-            }
+            if ([[self captureSession] canAddInput:backFacingCameraDeviceInput]) [[self captureSession] addInput:backFacingCameraDeviceInput];
+            else if (self.delegate) [self.delegate cameraSessionManagerCannotAccessBackFacingCamera];
+            
         }
     }
 }
@@ -208,7 +191,9 @@
                                                              NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
                                                              UIImage *image = [[UIImage alloc] initWithData:imageData];
                                                              [self setStillImage:image];
-                                                             [[NSNotificationCenter defaultCenter] postNotificationName:kImageCapturedSuccessfully object:nil];
+                                                             
+                                                             if (self.delegate) [self.delegate cameraSessionManagerDidCaptureImage];
+                                                                 
                                                          }];
 }
 

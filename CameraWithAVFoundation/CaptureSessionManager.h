@@ -9,8 +9,19 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
 
+///Protocol Definition
+@protocol CaptureSessionManagerDelegate <NSObject>
+@required - (void)cameraSessionManagerDidCaptureImage;
+@required - (void)cameraSessionManagerFailedToCaptureImage;
+@optional - (void)cameraSessionManagerCannotAccessFrontFacingCamera;
+@optional - (void)cameraSessionManagerCannotAccessBackFacingCamera;
+
+
+@end
+
 @interface CaptureSessionManager : NSObject
 
+@property (nonatomic, weak) id<CaptureSessionManagerDelegate>delegate;
 @property (retain) AVCaptureVideoPreviewLayer *previewLayer;
 @property (retain) AVCaptureSession *captureSession;
 @property (retain) AVCaptureStillImageOutput *stillImageOutput;
