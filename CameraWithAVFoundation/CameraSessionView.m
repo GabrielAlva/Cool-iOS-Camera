@@ -32,6 +32,9 @@
 @property (nonatomic, strong) CameraTopBarView      *topBarView;
 @property (nonatomic, strong) CameraFocusIndicator  *focusIndicator;
 
+//Temporary/Diagnostic properties
+@property (nonatomic, strong) UILabel *ISOLabel, *apertureLabel, *shutterSpeedLabel;
+
 @end
 
 @implementation CameraSessionView
@@ -144,6 +147,12 @@
         [self addGestureRecognizer:singleTapGestureRecognizer];
     }
     
+    //Compose diagnostic Labels
+    _ISOLabel = [UILabel new]; {
+        _ISOLabel.frame = CGRectMake(0, 0, 100, 100);
+        _ISOLabel.textColor = [UIColor whiteColor];
+        [self addSubview:_ISOLabel];
+    }
 
 }
 

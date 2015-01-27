@@ -36,6 +36,7 @@
     AVCaptureDevice *frontCamera;
     AVCaptureDevice *backCamera;
     
+    
     //Iterate through devices and identify those of 'AVMediaTypeVideo' media type
     for (AVCaptureDevice *device in devices) if ([device hasMediaType:AVMediaTypeVideo]) {
         if ([device position] == AVCaptureDevicePositionBack) backCamera = device;
@@ -55,7 +56,6 @@
         if (!error) {
             if ([[self captureSession] canAddInput:backFacingCameraDeviceInput]) [[self captureSession] addInput:backFacingCameraDeviceInput];
             else if (self.delegate) [self.delegate cameraSessionManagerCannotAccessBackFacingCamera];
-            
         }
     }
 }
