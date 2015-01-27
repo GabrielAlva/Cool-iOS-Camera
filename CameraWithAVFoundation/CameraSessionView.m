@@ -261,6 +261,10 @@
     NSLog(@"FAILED TO CAPTURE IMAGE");
 }
 
+-(void)cameraSessionManagerDidReportAvailability:(BOOL)deviceAvailability forCameraType:(CameraType)cameraType {
+    NSLog(@"%@ CAMERA %@ AVAILABLE", (cameraType ? @"FRONT-FACING" : @"REAR-FACING"), (deviceAvailability ? @"IS" : @"IS NOT"));
+}
+
 #pragma mark - Helper Methods
 
 - (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)())completionHandler

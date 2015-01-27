@@ -10,9 +10,18 @@
 
 @interface Constants : NSObject
 
+///Macros
+
 #define IPHONE_SHUTTER_BUTTON_SIZE      CGSizeMake(70, 70)
 #define IPHONE_OVERLAY_BAR_SIZE         CGSizeMake([[UIScreen mainScreen] bounds].size.width, 45)
 #define IPHONE_OVERLAY_BAR_BUTTON_SIZE  CGSizeMake(27, 27)
+
+///Type Definitions
+
+typedef NS_ENUM(BOOL, CameraType) {
+    FrontFacingCamera,
+    RearFacingCamera,
+};
 
 typedef NS_ENUM(NSInteger, BarButtonTag) {
     ShutterButtonTag,
@@ -20,5 +29,11 @@ typedef NS_ENUM(NSInteger, BarButtonTag) {
     FlashButtonTag,
     DismissButtonTag,
 };
+
+typedef struct {
+    NSInteger ISO;
+    CGFloat shutterSpeed;
+    CGFloat aperture;
+} ActiveCameraSettings;
 
 @end

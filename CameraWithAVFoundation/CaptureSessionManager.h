@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Gabriel Alvarado. All rights reserved.
 //
 #define kImageCapturedSuccessfully @"imageCapturedSuccessfully"
+#import "Constants.h"
 #import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
 
@@ -13,9 +14,12 @@
 @protocol CaptureSessionManagerDelegate <NSObject>
 @required - (void)cameraSessionManagerDidCaptureImage;
 @required - (void)cameraSessionManagerFailedToCaptureImage;
-@optional - (void)cameraSessionManagerCannotAccessFrontFacingCamera;
-@optional - (void)cameraSessionManagerCannotAccessBackFacingCamera;
 
+
+@optional - (void)cameraSessionManagerDidReportAvailability:(BOOL)deviceAvailability forCameraType:(CameraType)cameraType;
+
+//Report Settings to delegate every .125 seconds
+@optional - (void)cameraSessionManagerDidReportSettings:(ActiveCameraSettings)activeCameraSettings;
 
 @end
 

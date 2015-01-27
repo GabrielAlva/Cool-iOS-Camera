@@ -44,19 +44,30 @@
     }
     
     NSError *error = nil;
-    
+    BOOL deviceAvailability;
+
     if (front) {
+        
         AVCaptureDeviceInput *frontFacingCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:frontCamera error:&error];
-        if (!error) {
-            if ([[self captureSession] canAddInput:frontFacingCameraDeviceInput]) [[self captureSession] addInput:frontFacingCameraDeviceInput];
-            else if (self.delegate) [self.delegate cameraSessionManagerCannotAccessFrontFacingCamera];
-        }
+        deviceAvailability = YES;
+        
+        if (!error && [[self captureSession] canAddInput:frontFacingCameraDeviceInput])
+            [[self captureSession] addInput:frontFacingCameraDeviceInput];
+            else deviceAvailability = NO;
+        
+        if (_delegate) [_delegate cameraSessionManagerDidReportAvailability:deviceAvailability forCameraType:FrontFacingCamera];
+        
     } else {
+        
         AVCaptureDeviceInput *backFacingCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:&error];
-        if (!error) {
-            if ([[self captureSession] canAddInput:backFacingCameraDeviceInput]) [[self captureSession] addInput:backFacingCameraDeviceInput];
-            else if (self.delegate) [self.delegate cameraSessionManagerCannotAccessBackFacingCamera];
-        }
+        deviceAvailability = YES;
+
+        if (!error && [[self captureSession] canAddInput:backFacingCameraDeviceInput])
+            [[self captureSession] addInput:backFacingCameraDeviceInput];
+            else deviceAvailability = NO;
+        
+        if (_delegate) [_delegate cameraSessionManagerDidReportAvailability:deviceAvailability forCameraType:RearFacingCamera];
+
     }
 }
 
