@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Gabriel Alvarado. All rights reserved.
 //
 
-#import "CameraFocusIndicator.h"
+#import "CameraFocalReticule.h"
 #import "CameraStyleKitClass.h"
 
-@implementation CameraFocusIndicator
+@implementation CameraFocalReticule
 
 - (void)drawRect:(CGRect)rect {
     [CameraStyleKitClass drawCameraFocusWithFrame:self.bounds];

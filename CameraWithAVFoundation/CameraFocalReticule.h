@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CameraFocusIndicator : UIView
+@interface CameraFocalReticule : UIView
 
 @end

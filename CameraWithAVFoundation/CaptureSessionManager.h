@@ -14,27 +14,30 @@
 @protocol CaptureSessionManagerDelegate <NSObject>
 @required - (void)cameraSessionManagerDidCaptureImage;
 @required - (void)cameraSessionManagerFailedToCaptureImage;
-
-
 @optional - (void)cameraSessionManagerDidReportAvailability:(BOOL)deviceAvailability forCameraType:(CameraType)cameraType;
-
-//Report Settings to delegate every .125 seconds
-@optional - (void)cameraSessionManagerDidReportSettings:(ActiveCameraSettings)activeCameraSettings;
+@optional - (void)cameraSessionManagerDidReportSettings:(ActiveCameraSettings)activeCameraSettings; //Report every .125 seconds
 
 @end
 
 @interface CaptureSessionManager : NSObject
 
+//Weak pointers
 @property (nonatomic, weak) id<CaptureSessionManagerDelegate>delegate;
-@property (retain) AVCaptureVideoPreviewLayer *previewLayer;
-@property (retain) AVCaptureSession *captureSession;
-@property (retain) AVCaptureStillImageOutput *stillImageOutput;
-@property (nonatomic, retain) UIImage *stillImage;
+@property (nonatomic, weak) AVCaptureDevice *activeCamera;
+
+//Strong Pointers
+@property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
+@property (nonatomic, strong) AVCaptureSession *captureSession;
+@property (nonatomic, strong) AVCaptureStillImageOutput *stillImageOutput;
+@property (nonatomic, strong) UIImage *stillImage;
+
+//Primative Variables
 @property (nonatomic,assign,getter=isTorchEnabled) BOOL enableTorch;
 
+//API Methods
 - (void)addStillImageOutput;
 - (void)captureStillImage;
 - (void)addVideoPreviewLayer;
-- (void)addVideoInputFrontCamera:(BOOL)front;
+- (void)initiateCaptureSessionForCamera:(CameraType)cameraType;
 
 @end

@@ -31,44 +31,39 @@
 	[[self previewLayer] setVideoGravity:AVLayerVideoGravityResizeAspectFill];
 }
 
-- (void)addVideoInputFrontCamera:(BOOL)front {
-    NSArray *devices = [AVCaptureDevice devices];
-    AVCaptureDevice *frontCamera;
-    AVCaptureDevice *backCamera;
+- (void)initiateCaptureSessionForCamera:(CameraType)cameraType {
     
-    
-    //Iterate through devices and identify those of 'AVMediaTypeVideo' media type
-    for (AVCaptureDevice *device in devices) if ([device hasMediaType:AVMediaTypeVideo]) {
-        if ([device position] == AVCaptureDevicePositionBack) backCamera = device;
-        else frontCamera = device;
+    //Iterate through devices and assign 'active camera' per parameter
+    for (AVCaptureDevice *device in AVCaptureDevice.devices) if ([device hasMediaType:AVMediaTypeVideo]) {
+        switch (cameraType) {
+            case RearFacingCamera:  if ([device position] == AVCaptureDevicePositionBack)   _activeCamera = device; break;
+            case FrontFacingCamera: if ([device position] == AVCaptureDevicePositionFront)  _activeCamera = device; break;
+        }
     }
+        
+    NSError *error          = nil;
+    BOOL deviceAvailability = YES;
     
-    NSError *error = nil;
-    BOOL deviceAvailability;
+    AVCaptureDeviceInput *cameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:_activeCamera error:&error];
+    if (!error && [[self captureSession] canAddInput:cameraDeviceInput]) [[self captureSession] addInput:cameraDeviceInput];
+    else deviceAvailability = NO;
+    
+    //Report camera device availability
+    if (self.delegate) [self.delegate cameraSessionManagerDidReportAvailability:deviceAvailability forCameraType:cameraType];
+    
+    [self initiateActiveCameraStatisticsReportLoop];
+}
 
-    if (front) {
-        
-        AVCaptureDeviceInput *frontFacingCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:frontCamera error:&error];
-        deviceAvailability = YES;
-        
-        if (!error && [[self captureSession] canAddInput:frontFacingCameraDeviceInput])
-            [[self captureSession] addInput:frontFacingCameraDeviceInput];
-            else deviceAvailability = NO;
-        
-        if (_delegate) [_delegate cameraSessionManagerDidReportAvailability:deviceAvailability forCameraType:FrontFacingCamera];
-        
-    } else {
-        
-        AVCaptureDeviceInput *backFacingCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:&error];
-        deviceAvailability = YES;
-
-        if (!error && [[self captureSession] canAddInput:backFacingCameraDeviceInput])
-            [[self captureSession] addInput:backFacingCameraDeviceInput];
-            else deviceAvailability = NO;
-        
-        if (_delegate) [_delegate cameraSessionManagerDidReportAvailability:deviceAvailability forCameraType:RearFacingCamera];
-
-    }
+-(void)initiateActiveCameraStatisticsReportLoop {
+    
+    [[NSOperationQueue new] addOperationWithBlock:^{
+        do {
+            [NSThread sleepForTimeInterval:.125];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                NSLog(@"ISO: %f \n APERTURE: %f \n LENS POSITION: %f \n EXPOSURE DURATION: %f", _activeCamera.ISO, _activeCamera.lensAperture, _activeCamera.lensPosition, CMTimeGetSeconds(_activeCamera.exposureDuration));
+            }];
+        } while (true);
+    }];
 }
 
 - (void)addStillImageOutput

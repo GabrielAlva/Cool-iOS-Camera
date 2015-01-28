@@ -15,7 +15,7 @@
 #import "CameraFlashButton.h"
 #import "CameraDismissButton.h"
 #import "CameraTopBarView.h"
-#import "CameraFocusIndicator.h"
+#import "CameraFocalReticule.h"
 #import "Constants.h"
 
 @interface CameraSessionView () <CaptureSessionManagerDelegate>
@@ -30,7 +30,7 @@
 @property (nonatomic, strong) CameraFlashButton     *cameraFlash;
 @property (nonatomic, strong) CameraDismissButton   *cameraDismiss;
 @property (nonatomic, strong) CameraTopBarView      *topBarView;
-@property (nonatomic, strong) CameraFocusIndicator  *focusIndicator;
+@property (nonatomic, strong) CameraFocalReticule  *focalReticule;
 
 //Temporary/Diagnostic properties
 @property (nonatomic, strong) UILabel *ISOLabel, *apertureLabel, *shutterSpeedLabel;
@@ -59,10 +59,10 @@
     CaptureSessionManager *captureManager = [CaptureSessionManager new]; {
         
         //Configure
-        [captureManager addVideoInputFrontCamera:NO];
+        [captureManager setDelegate:self];
+        [captureManager initiateCaptureSessionForCamera:RearFacingCamera];
         [captureManager addStillImageOutput];
         [captureManager addVideoPreviewLayer];
-        [captureManager setDelegate:self];
         
         //Preview Layer setup
         CGRect layerRect = self.layer.bounds;
@@ -132,20 +132,22 @@
         }
     }
     
-    //Create the focus indicator UIView
-    _focusIndicator = [CameraFocusIndicator new]; {
+    //Create the focus reticule UIView
+    _focalReticule = [CameraFocalReticule new]; {
     
         //Setup the attributes for the focus view
-        _focusIndicator.frame               = (CGRect){0,0, 60, 60};
-        _focusIndicator.backgroundColor     = [UIColor clearColor];
-        _focusIndicator.hidden              = YES;
-        [self addSubview:_focusIndicator];
+        _focalReticule.frame               = (CGRect){0,0, 60, 60};
+        _focalReticule.backgroundColor     = [UIColor clearColor];
+        _focalReticule.hidden              = YES;
+        [self addSubview:_focalReticule];
     }
     
     //Create the gesture recognizer for the focus tap
     UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusGesture:)];{
         [self addGestureRecognizer:singleTapGestureRecognizer];
     }
+    
+#warning Remove These Labels
     
     //Compose diagnostic Labels
     _ISOLabel = [UILabel new]; {
@@ -204,7 +206,7 @@
             CGPoint location = [sender locationInView:self];
             
             [self focusAtPoint:location completionHandler:^{
-                 [self animateFocusIndicatorToPoint:location];
+                 [self animateFocusReticuleToPoint:location];
              }];
         }
     }
@@ -230,19 +232,19 @@
     }];
 }
 
-- (void)animateFocusIndicatorToPoint:(CGPoint)targetPoint
+- (void)animateFocusReticuleToPoint:(CGPoint)targetPoint
 {
     _animationInProgress = YES; //Disables input manager
     
-    [self.focusIndicator setCenter:targetPoint];
-    self.focusIndicator.alpha = 0.0;
-    self.focusIndicator.hidden = NO;
+    [self.focalReticule setCenter:targetPoint];
+    self.focalReticule.alpha = 0.0;
+    self.focalReticule.hidden = NO;
     
     [UIView animateWithDuration:0.4 animations:^{
-         self.focusIndicator.alpha = 1.0;
+         self.focalReticule.alpha = 1.0;
      } completion:^(BOOL finished) {
          [UIView animateWithDuration:0.4 animations:^{
-              self.focusIndicator.alpha = 0.0;
+              self.focalReticule.alpha = 0.0;
           }completion:^(BOOL finished) {
               
               _animationInProgress = NO; //Enables input manager
@@ -262,7 +264,7 @@
 }
 
 -(void)cameraSessionManagerDidReportAvailability:(BOOL)deviceAvailability forCameraType:(CameraType)cameraType {
-    NSLog(@"%@ CAMERA %@ AVAILABLE", (cameraType ? @"FRONT-FACING" : @"REAR-FACING"), (deviceAvailability ? @"IS" : @"IS NOT"));
+    NSLog(@"%@ CAMERA %@ AVAILABLE", (cameraType ? @"REAR-FACING" : @"FRONT-FACING"), (deviceAvailability ? @"IS" : @"IS NOT"));
 }
 
 #pragma mark - Helper Methods
