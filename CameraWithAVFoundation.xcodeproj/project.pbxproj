@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B472D891A729EB000C85DAB /* CameraSessionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B472D881A729EB000C85DAB /* CameraSessionView.m */; };
+		1BA105E11A7A9CE1000B1A36 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA105E01A7A9CE1000B1A36 /* Constants.m */; };
 		64ABD10E18FF19E000B2E420 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD10D18FF19E000B2E420 /* Foundation.framework */; };
 		64ABD11018FF19E000B2E420 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD10F18FF19E000B2E420 /* CoreGraphics.framework */; };
 		64ABD11218FF19E000B2E420 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD11118FF19E000B2E420 /* UIKit.framework */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		1B472D871A729EB000C85DAB /* CameraSessionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSessionView.h; sourceTree = "<group>"; };
 		1B472D881A729EB000C85DAB /* CameraSessionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraSessionView.m; sourceTree = "<group>"; };
+		1BA105E01A7A9CE1000B1A36 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		1BDD39D11A745E6700A200BA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		64ABD10A18FF19E000B2E420 /* CameraWithAVFoundation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraWithAVFoundation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64ABD10D18FF19E000B2E420 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -219,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				1BDD39D11A745E6700A200BA /* Constants.h */,
+				1BA105E01A7A9CE1000B1A36 /* Constants.m */,
 				64ABD14C18FF215A00B2E420 /* CaptureSessionManager.h */,
 				64ABD14D18FF215A00B2E420 /* CaptureSessionManager.m */,
 			);
@@ -383,6 +386,7 @@
 				64D101CE1A74351600316FAA /* CameraStyleKitClass.m in Sources */,
 				64ABD11E18FF19E000B2E420 /* CameraAppDelegate.m in Sources */,
 				64D101E11A75EA8A00316FAA /* CameraFocalReticule.m in Sources */,
+				1BA105E11A7A9CE1000B1A36 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
