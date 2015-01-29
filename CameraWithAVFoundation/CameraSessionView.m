@@ -31,9 +31,6 @@
 @property (nonatomic, strong) CameraFocalReticule   *focalReticule;
 @property (nonatomic, strong) UIView                *topBarView;
 
-//Properties for the customization API
-@property (nonatomic, strong) UIColor               *topBarColor;
-
 //Temporary/Diagnostic properties
 @property (nonatomic, strong) UILabel *ISOLabel, *apertureLabel, *shutterSpeedLabel;
 
@@ -100,9 +97,7 @@
         
         //Setup visual attribution for bar
         _topBarView.frame               = (CGRect){0,0, IPHONE_OVERLAY_BAR_SIZE};
-        _topBarView.backgroundColor     = [UIColor clearColor];
-        if (_topBarColor)   { _topBarView.backgroundColor     = _topBarColor; }
-        else                { _topBarView.backgroundColor     = [UIColor colorWithRed: 0.176 green: 0.478 blue: 0.529 alpha: 0.64]; }
+        _topBarView.backgroundColor     = [UIColor colorWithRed: 0.176 green: 0.478 blue: 0.529 alpha: 0.64];
         [self addSubview:_topBarView];
         
         //Add the flash button
@@ -338,8 +333,7 @@
 
 - (void)setTopBarColor:(UIColor *)topBarColor
 {
-    _topBarColor = topBarColor;
-    [self composeInterface];
+    _topBarView.backgroundColor = topBarColor;
 }
 
 - (void)hideFlashButton

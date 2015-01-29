@@ -36,7 +36,6 @@
 		64D101D51A7439B900316FAA /* CameraFlashButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101D41A7439B900316FAA /* CameraFlashButton.m */; };
 		64D101D81A7439C400316FAA /* CameraToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101D71A7439C400316FAA /* CameraToggleButton.m */; };
 		64D101DB1A7439D100316FAA /* CameraDismissButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101DA1A7439D100316FAA /* CameraDismissButton.m */; };
-		64D101DE1A743C0600316FAA /* CameraTopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101DD1A743C0600316FAA /* CameraTopBarView.m */; };
 		64D101E11A75EA8A00316FAA /* CameraFocalReticule.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101E01A75EA8A00316FAA /* CameraFocalReticule.m */; };
 /* End PBXBuildFile section */
 
@@ -93,8 +92,6 @@
 		64D101D71A7439C400316FAA /* CameraToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraToggleButton.m; sourceTree = "<group>"; };
 		64D101D91A7439D100316FAA /* CameraDismissButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraDismissButton.h; sourceTree = "<group>"; };
 		64D101DA1A7439D100316FAA /* CameraDismissButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraDismissButton.m; sourceTree = "<group>"; };
-		64D101DC1A743C0600316FAA /* CameraTopBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraTopBarView.h; sourceTree = "<group>"; };
-		64D101DD1A743C0600316FAA /* CameraTopBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraTopBarView.m; sourceTree = "<group>"; };
 		64D101DF1A75EA8A00316FAA /* CameraFocalReticule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFocalReticule.h; sourceTree = "<group>"; };
 		64D101E01A75EA8A00316FAA /* CameraFocalReticule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraFocalReticule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -268,8 +265,6 @@
 				64D101D71A7439C400316FAA /* CameraToggleButton.m */,
 				64D101D91A7439D100316FAA /* CameraDismissButton.h */,
 				64D101DA1A7439D100316FAA /* CameraDismissButton.m */,
-				64D101DC1A743C0600316FAA /* CameraTopBarView.h */,
-				64D101DD1A743C0600316FAA /* CameraTopBarView.m */,
 				64D101DF1A75EA8A00316FAA /* CameraFocalReticule.h */,
 				64D101E01A75EA8A00316FAA /* CameraFocalReticule.m */,
 			);
@@ -379,7 +374,6 @@
 			files = (
 				64ABD12718FF19E000B2E420 /* CameraViewController.m in Sources */,
 				64D101D51A7439B900316FAA /* CameraFlashButton.m in Sources */,
-				64D101DE1A743C0600316FAA /* CameraTopBarView.m in Sources */,
 				1B472D891A729EB000C85DAB /* CameraSessionView.m in Sources */,
 				64D101DB1A7439D100316FAA /* CameraDismissButton.m in Sources */,
 				64ABD14E18FF215A00B2E420 /* CaptureSessionManager.m in Sources */,
