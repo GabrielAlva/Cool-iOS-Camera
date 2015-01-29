@@ -51,18 +51,20 @@
     //Report camera device availability
     if (self.delegate) [self.delegate cameraSessionManagerDidReportAvailability:deviceAvailability forCameraType:cameraType];
     
-    [self initiateActiveCameraStatisticsReportLoop];
+    [self initiateStatisticsReportWithInterval:.125];
 }
 
--(void)initiateActiveCameraStatisticsReportLoop {
+-(void)initiateStatisticsReportWithInterval:(CGFloat)interval {
+    
+    __block id blockSafeSelf = self;
     
     [[NSOperationQueue new] addOperationWithBlock:^{
         do {
-            [NSThread sleepForTimeInterval:.125];
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                NSLog(@"ISO: %f \n APERTURE: %f \n LENS POSITION: %f \n EXPOSURE DURATION: %f", _activeCamera.ISO, _activeCamera.lensAperture, _activeCamera.lensPosition, CMTimeGetSeconds(_activeCamera.exposureDuration));
+            [NSThread sleepForTimeInterval:interval];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{                
+                if (self.delegate) [self.delegate cameraSessionManagerDidReportDeviceStatistics:cameraStatisticsMake(_activeCamera.lensAperture, CMTimeGetSeconds(_activeCamera.exposureDuration), _activeCamera.ISO, _activeCamera.lensPosition)];
             }];
-        } while (true);
+        } while (blockSafeSelf);
     }];
 }
 

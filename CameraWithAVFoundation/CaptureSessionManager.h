@@ -14,10 +14,10 @@
 @protocol CaptureSessionManagerDelegate <NSObject>
 @required - (void)cameraSessionManagerDidCaptureImage;
 @required - (void)cameraSessionManagerFailedToCaptureImage;
-@optional - (void)cameraSessionManagerDidReportAvailability:(BOOL)deviceAvailability forCameraType:(CameraType)cameraType;
-@optional - (void)cameraSessionManagerDidReportSettings:(ActiveCameraSettings)activeCameraSettings; //Report every .125 seconds
-@optional - (void)capturedImage;
-@optional - (void)capturedImageData;
+@required - (void)cameraSessionManagerDidReportAvailability:(BOOL)deviceAvailability forCameraType:(CameraType)cameraType;
+@required - (void)cameraSessionManagerDidReportDeviceStatistics:(CameraStatistics)deviceStatistics; //Report every .125 seconds
+@required - (void)capturedImage;
+@required - (void)capturedImageData;
 
 @end
 

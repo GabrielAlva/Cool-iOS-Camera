@@ -31,9 +31,14 @@ typedef NS_ENUM(NSInteger, BarButtonTag) {
 };
 
 typedef struct {
-    NSInteger ISO;
-    CGFloat shutterSpeed;
+    CGFloat ISO;
+    CGFloat exposureDuration;
     CGFloat aperture;
-} ActiveCameraSettings;
+    CGFloat lensPosition;
+} CameraStatistics;
+
+///Function Prototype declarations
+
+CameraStatistics cameraStatisticsMake(float aperture, float exposureDuration, float ISO, float lensPostion);
 
 @end

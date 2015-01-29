@@ -266,6 +266,10 @@
     NSLog(@"%@ CAMERA %@ AVAILABLE", (cameraType ? @"REAR-FACING" : @"FRONT-FACING"), (deviceAvailability ? @"IS" : @"IS NOT"));
 }
 
+-(void)cameraSessionManagerDidReportDeviceStatistics:(CameraStatistics)deviceStatistics {
+    NSLog(@"ISO: %f", deviceStatistics.ISO);
+}
+
 #pragma mark - Helper Methods
 
 - (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)())completionHandler
