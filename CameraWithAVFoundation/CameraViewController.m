@@ -24,8 +24,13 @@
     
     //Instantiate the camera view
     CameraSessionView *cameraView = [[CameraSessionView alloc] initWithFrame:self.view.frame];
+    
+    //Example Customization
     //[cameraView setTopBarColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha: 0.64]];
     //[cameraView hideFlashButton];
+    //[cameraView hideCameraToogleButton];
+    //[cameraView hideDismissButton];
+    
     [self.view insertSubview:cameraView atIndex:0];
 }
 

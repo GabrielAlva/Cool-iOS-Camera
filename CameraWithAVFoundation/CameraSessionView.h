@@ -8,7 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+///Protocol Definition
+@protocol CameraManagerDelegate <NSObject>
+
+@optional - (void)capturedImage:(UIImage *)image;
+@optional - (void)capturedImageData:(NSData *)imageData;
+
+@end
+
 @interface CameraSessionView : UIView
+
+//Delegate Property
+@property (nonatomic, weak) id<CameraManagerDelegate>delegate;
 
 //API Functions
 - (void)setTopBarColor:(UIColor *)topBarColor;
