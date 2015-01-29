@@ -32,6 +32,7 @@
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, strong) AVCaptureStillImageOutput *stillImageOutput;
 @property (nonatomic, strong) UIImage *stillImage;
+@property (nonatomic, strong) NSData *stillImageData;
 
 //Primative Variables
 @property (nonatomic,assign,getter=isTorchEnabled) BOOL enableTorch;

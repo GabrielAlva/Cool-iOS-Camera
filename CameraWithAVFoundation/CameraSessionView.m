@@ -255,7 +255,7 @@
 
 -(void)cameraSessionManagerDidCaptureImage {
     NSLog(@"SUCEEDED IN CAPTURING IMAGE");
-    [self saveImageToPhotoAlbum];
+    [self setImageToTheDelegate];
 }
 
 -(void)cameraSessionManagerFailedToCaptureImage {
@@ -307,15 +307,11 @@
     else { completionHandler(); }
 }
 
-- (void)saveImageToPhotoAlbum
+- (void)setImageToTheDelegate
 {
-    UIImageWriteToSavedPhotosAlbum([[self captureManager] stillImage], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-}
-
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-{
-    //Show error alert if image could not be saved
-    if (error) [[[UIAlertView alloc] initWithTitle:@"Error!" message:@"Image couldn't be saved" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+    id<CameraManagerDelegate> strongDelegate = self.delegate;
+    if ([strongDelegate respondsToSelector:@selector(capturedImage:)]) { [strongDelegate capturedImage:[[self captureManager] stillImage]]; }
+    if ([strongDelegate respondsToSelector:@selector(capturedImageData:)]) { [strongDelegate capturedImageData:[[self captureManager] stillImageData]]; }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

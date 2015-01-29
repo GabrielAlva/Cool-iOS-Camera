@@ -15,6 +15,7 @@
 @synthesize previewLayer;
 @synthesize stillImageOutput;
 @synthesize stillImage;
+@synthesize stillImageData;
 
 #pragma mark Capture Session Configuration
 
@@ -199,6 +200,7 @@
                                                              NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
                                                              UIImage *image = [[UIImage alloc] initWithData:imageData];
                                                              [self setStillImage:image];
+                                                             [self setStillImageData:imageData];
                                                              
                                                              if (self.delegate) [self.delegate cameraSessionManagerDidCaptureImage];
                                                                  
