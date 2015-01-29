@@ -10,4 +10,10 @@
 
 @interface CameraSessionView : UIView
 
+//API Functions
+- (void)setTopBarColor:(UIColor *)topBarColor;
+- (void)hideFlashButton;
+- (void)hideCameraToogleButton;
+- (void)hideDismissButton;
+
 @end

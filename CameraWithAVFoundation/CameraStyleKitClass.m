@@ -65,7 +65,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     //// Color Declarations
-    UIColor* color = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 0.795];
+    UIColor* color = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 1];
 
 
     //// Subframes
@@ -112,7 +112,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     //// Color Declarations
-    UIColor* color2 = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 0.8];
+    UIColor* color2 = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 1];
 
 
     //// Subframes
@@ -211,7 +211,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     //// Color Declarations
-    UIColor* color3 = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 0.8];
+    UIColor* color3 = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 1];
 
 
     //// Subframes

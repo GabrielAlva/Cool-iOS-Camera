@@ -14,7 +14,6 @@
 #import "CameraToggleButton.h"
 #import "CameraFlashButton.h"
 #import "CameraDismissButton.h"
-#import "CameraTopBarView.h"
 #import "CameraFocalReticule.h"
 #import "Constants.h"
 
@@ -29,8 +28,11 @@
 @property (nonatomic, strong) CameraToggleButton    *cameraToggle;
 @property (nonatomic, strong) CameraFlashButton     *cameraFlash;
 @property (nonatomic, strong) CameraDismissButton   *cameraDismiss;
-@property (nonatomic, strong) CameraTopBarView      *topBarView;
-@property (nonatomic, strong) CameraFocalReticule  *focalReticule;
+@property (nonatomic, strong) CameraFocalReticule   *focalReticule;
+@property (nonatomic, strong) UIView                *topBarView;
+
+//Properties for the customization API
+@property (nonatomic, strong) UIColor               *topBarColor;
 
 //Temporary/Diagnostic properties
 @property (nonatomic, strong) UILabel *ISOLabel, *apertureLabel, *shutterSpeedLabel;
@@ -94,11 +96,13 @@
     }
     
     //Create the top bar and add the buttons to it
-    _topBarView = [CameraTopBarView new]; {
+    _topBarView = [UIView new]; {
         
         //Setup visual attribution for bar
         _topBarView.frame               = (CGRect){0,0, IPHONE_OVERLAY_BAR_SIZE};
         _topBarView.backgroundColor     = [UIColor clearColor];
+        if (_topBarColor)   { _topBarView.backgroundColor     = _topBarColor; }
+        else                { _topBarView.backgroundColor     = [UIColor colorWithRed: 0.176 green: 0.478 blue: 0.529 alpha: 0.64]; }
         [self addSubview:_topBarView];
         
         //Add the flash button
@@ -330,13 +334,27 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+#pragma mark - API Functions
 
+- (void)setTopBarColor:(UIColor *)topBarColor
+{
+    _topBarColor = topBarColor;
+    [self composeInterface];
+}
+
+- (void)hideFlashButton
+{
+    _cameraFlash.hidden = YES;
+}
+
+- (void)hideCameraToogleButton
+{
+    _cameraToggle.hidden = YES;
+}
+
+- (void)hideDismissButton
+{
+    _cameraDismiss.hidden = YES;
+}
 
 @end

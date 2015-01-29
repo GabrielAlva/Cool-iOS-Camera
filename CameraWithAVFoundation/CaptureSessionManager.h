@@ -16,6 +16,8 @@
 @required - (void)cameraSessionManagerFailedToCaptureImage;
 @optional - (void)cameraSessionManagerDidReportAvailability:(BOOL)deviceAvailability forCameraType:(CameraType)cameraType;
 @optional - (void)cameraSessionManagerDidReportSettings:(ActiveCameraSettings)activeCameraSettings; //Report every .125 seconds
+@optional - (void)capturedImage;
+@optional - (void)capturedImageData;
 
 @end
 
