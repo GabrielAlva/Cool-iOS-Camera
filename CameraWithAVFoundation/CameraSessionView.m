@@ -78,6 +78,9 @@
 
 -(void)composeInterface {
     
+    //Adding notifier for orientation changes
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
+    
     //Create shutter button
     _cameraShutter = [CameraShutterButton new]; {
         
@@ -251,6 +254,62 @@
      }];
 }
 
+- (void)orientationChanged:(NSNotification *)notification{
+    
+    //Animate top bar buttons on orientation changes
+    switch ([[UIDevice currentDevice] orientation]) {
+        case UIDeviceOrientationPortrait:
+        {
+            //Standard device orientation (Portrait)
+            [UIView animateWithDuration:0.6 animations:^{
+                CGAffineTransform transform = CGAffineTransformMakeRotation( 0 );
+                
+                _cameraFlash.transform = transform;
+                _cameraFlash.center = CGPointMake(_topBarView.center.x * 0.80, _topBarView.center.y);
+                
+                _cameraToggle.transform = transform;
+                _cameraToggle.center    = CGPointMake(_topBarView.center.x * 1.20, _topBarView.center.y);
+                
+                _cameraDismiss.center   = CGPointMake(20, _topBarView.center.y);
+            }];
+        }
+            break;
+        case UIDeviceOrientationLandscapeLeft:
+        {
+            //Device orientation changed to landscape left
+            [UIView animateWithDuration:0.6 animations:^{
+                CGAffineTransform transform = CGAffineTransformMakeRotation( M_PI_2 );
+                
+                _cameraFlash.transform = transform;
+                _cameraFlash.center = CGPointMake(_topBarView.center.x * 1.25, _topBarView.center.y);
+                
+                _cameraToggle.transform = transform;
+                _cameraToggle.center    = CGPointMake(_topBarView.center.x * 1.60, _topBarView.center.y);
+                
+                _cameraDismiss.center   = CGPointMake(_topBarView.center.x * 0.25, _topBarView.center.y);
+            }];
+        }
+            break;
+        case UIDeviceOrientationLandscapeRight:
+        {
+            //Device orientation changed to landscape right
+            [UIView animateWithDuration:0.6 animations:^{
+                CGAffineTransform transform = CGAffineTransformMakeRotation( - M_PI_2 );
+                
+                _cameraFlash.transform = transform;
+                _cameraFlash.center = CGPointMake(_topBarView.center.x * 0.40, _topBarView.center.y);
+                
+                _cameraToggle.transform = transform;
+                _cameraToggle.center    = CGPointMake(_topBarView.center.x * 0.75, _topBarView.center.y);
+                
+                _cameraDismiss.center   = CGPointMake(_topBarView.center.x * 1.75, _topBarView.center.y);
+            }];
+        }
+            break;
+        default:;
+    }
+}
+
 #pragma mark - Camera Session Manager Delegate Methods
 
 -(void)cameraSessionManagerDidCaptureImage {
@@ -267,7 +326,7 @@
 }
 
 -(void)cameraSessionManagerDidReportDeviceStatistics:(CameraStatistics)deviceStatistics {
-    NSLog(@"ISO: %f", deviceStatistics.ISO);
+    //NSLog(@"ISO: %f", deviceStatistics.ISO);
 }
 
 #pragma mark - Helper Methods
@@ -349,6 +408,10 @@
 - (void)hideDismissButton
 {
     _cameraDismiss.hidden = YES;
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 @end
