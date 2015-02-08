@@ -18,6 +18,10 @@
 #import "Constants.h"
 
 @interface CameraSessionView () <CaptureSessionManagerDelegate>
+{
+    //Variable vith the current camera being used (Rear/Front)
+    CameraType cameraBeingUsed;
+}
 
 //Primative Properties
 @property (readwrite) BOOL animationInProgress;
@@ -42,7 +46,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         _animationInProgress = NO;
-        [self setupCaptureManager];
+        [self setupCaptureManager:RearFacingCamera];
+        cameraBeingUsed = RearFacingCamera;
         [self composeInterface];
         
         [[_captureManager captureSession] startRunning];
@@ -52,14 +57,14 @@
 
 #pragma mark - Setup
 
--(void)setupCaptureManager {
+-(void)setupCaptureManager:(CameraType)camera {
     
     //Create and configure 'CaptureSessionManager' object
     CaptureSessionManager *captureManager = [CaptureSessionManager new]; {
         
         //Configure
         [captureManager setDelegate:self];
-        [captureManager initiateCaptureSessionForCamera:RearFacingCamera];
+        [captureManager initiateCaptureSessionForCamera:camera];
         [captureManager addStillImageOutput];
         [captureManager addVideoPreviewLayer];
         
@@ -194,6 +199,19 @@
 }
 
 - (void)onTapToggleButton {
+    if (cameraBeingUsed == RearFacingCamera){
+        [self setupCaptureManager:FrontFacingCamera];
+        cameraBeingUsed = FrontFacingCamera;
+        [self composeInterface];
+        [[_captureManager captureSession] startRunning];
+        _cameraFlash.hidden = YES;
+    } else {
+        [self setupCaptureManager:RearFacingCamera];
+        cameraBeingUsed = RearFacingCamera;
+        [self composeInterface];
+        [[_captureManager captureSession] startRunning];
+        _cameraFlash.hidden = NO;
+    }
 }
 
 - (void)onTapDismissButton {
@@ -388,6 +406,10 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
 #pragma mark - API Functions
 
 - (void)setTopBarColor:(UIColor *)topBarColor
@@ -408,10 +430,6 @@
 - (void)hideDismissButton
 {
     _cameraDismiss.hidden = YES;
-}
-
--(void)viewDidDisappear:(BOOL)animated{
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 @end
