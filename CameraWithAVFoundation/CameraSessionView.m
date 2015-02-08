@@ -59,25 +59,28 @@
 
 -(void)setupCaptureManager:(CameraType)camera {
     
+    //If previous intance of a 'CaptureSessionManager' object exists, remove it and it's preview layer
+    if (_captureManager) {
+        [_captureManager.previewLayer removeFromSuperlayer];
+        _captureManager = nil;
+    }
+    
     //Create and configure 'CaptureSessionManager' object
-    CaptureSessionManager *captureManager = [CaptureSessionManager new]; {
+    _captureManager = [CaptureSessionManager new]; {
         
         //Configure
-        [captureManager setDelegate:self];
-        [captureManager initiateCaptureSessionForCamera:camera];
-        [captureManager addStillImageOutput];
-        [captureManager addVideoPreviewLayer];
+        [_captureManager setDelegate:self];
+        [_captureManager initiateCaptureSessionForCamera:camera];
+        [_captureManager addStillImageOutput];
+        [_captureManager addVideoPreviewLayer];
         
         //Preview Layer setup
         CGRect layerRect = self.layer.bounds;
-        [captureManager.previewLayer setBounds:layerRect];
-        [captureManager.previewLayer setPosition:CGPointMake(CGRectGetMidX(layerRect),CGRectGetMidY(layerRect))];
+        [_captureManager.previewLayer setBounds:layerRect];
+        [_captureManager.previewLayer setPosition:CGPointMake(CGRectGetMidX(layerRect),CGRectGetMidY(layerRect))];
         
         //Add to self.view's layer
-        [self.layer addSublayer:captureManager.previewLayer];
-        
-        //Retain strong reference to object
-        _captureManager = captureManager;
+        [self.layer addSublayer:_captureManager.previewLayer];
     }
 }
 
