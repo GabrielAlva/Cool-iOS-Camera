@@ -59,14 +59,14 @@
 
 -(void)setupCaptureManager:(CameraType)camera {
     
-    //If previous intance of a 'CaptureSessionManager' object exists, remove it and it's preview layer
-    if (_captureManager) {
-        [_captureManager.previewLayer removeFromSuperlayer];
-        _captureManager = nil;
-    }
+    //If previous intance of a 'CaptureSessionManager' object exists, remove it's preview layer
+    if (_captureManager) [_captureManager.previewLayer removeFromSuperlayer];
+    _captureManager = nil;
     
     //Create and configure 'CaptureSessionManager' object
-    _captureManager = [CaptureSessionManager new]; {
+    _captureManager = [CaptureSessionManager new];
+    
+    if (_captureManager) {
         
         //Configure
         [_captureManager setDelegate:self];
@@ -90,7 +90,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
     
     //Create shutter button
-    _cameraShutter = [CameraShutterButton new]; {
+    _cameraShutter = [CameraShutterButton new];
+    
+    if (_captureManager) {
         
         //Button Visual attribution
         _cameraShutter.frame            = (CGRect){0,0, IPHONE_SHUTTER_BUTTON_SIZE};
@@ -104,7 +106,9 @@
     }
     
     //Create the top bar and add the buttons to it
-    _topBarView = [UIView new]; {
+    _topBarView = [UIView new];
+    
+    if (_topBarView) {
         
         //Setup visual attribution for bar
         _topBarView.frame               = (CGRect){0,0, IPHONE_OVERLAY_BAR_SIZE};
@@ -112,7 +116,10 @@
         [self addSubview:_topBarView];
         
         //Add the flash button
-        _cameraFlash = [CameraFlashButton new]; {
+        _cameraFlash = [CameraFlashButton new];
+        
+        if (_cameraFlash) {
+            
             _cameraFlash.frame  = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
             _cameraFlash.center = CGPointMake(_topBarView.center.x * 0.80, _topBarView.center.y);
             _cameraFlash.tag    = FlashButtonTag;
@@ -120,7 +127,10 @@
         }
         
         //Add the camera toggle button
-        _cameraToggle = [CameraToggleButton new]; {
+        _cameraToggle = [CameraToggleButton new];
+        
+        if (_cameraToggle) {
+            
             _cameraToggle.frame     = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
             _cameraToggle.center    = CGPointMake(_topBarView.center.x * 1.20, _topBarView.center.y);
             _cameraToggle.tag       = ToggleButtonTag;
@@ -128,7 +138,10 @@
         }
         
         //Add the camera dismiss button
-        _cameraDismiss = [CameraDismissButton new]; {
+        _cameraDismiss = [CameraDismissButton new];
+        
+        if (_cameraDismiss) {
+            
             _cameraDismiss.frame    = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
             _cameraDismiss.center   = CGPointMake(20, _topBarView.center.y);
             _cameraDismiss.tag      = DismissButtonTag;
@@ -143,9 +156,10 @@
     }
     
     //Create the focus reticule UIView
-    _focalReticule = [CameraFocalReticule new]; {
+    _focalReticule = [CameraFocalReticule new];
     
-        //Setup the attributes for the focus view
+    if (_focalReticule) {
+        
         _focalReticule.frame               = (CGRect){0,0, 60, 60};
         _focalReticule.backgroundColor     = [UIColor clearColor];
         _focalReticule.hidden              = YES;
@@ -153,19 +167,9 @@
     }
     
     //Create the gesture recognizer for the focus tap
-    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusGesture:)];{
-        [self addGestureRecognizer:singleTapGestureRecognizer];
-    }
+    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusGesture:)];
+    if (singleTapGestureRecognizer) [self addGestureRecognizer:singleTapGestureRecognizer];
     
-#warning Remove These Labels
-    
-    //Compose diagnostic Labels
-    _ISOLabel = [UILabel new]; {
-        _ISOLabel.frame = CGRectMake(0, 0, 100, 100);
-        _ISOLabel.textColor = [UIColor whiteColor];
-        [self addSubview:_ISOLabel];
-    }
-
 }
 
 #pragma mark - User Interaction
@@ -202,7 +206,7 @@
 }
 
 - (void)onTapToggleButton {
-    if (cameraBeingUsed == RearFacingCamera){
+    if (cameraBeingUsed == RearFacingCamera) {
         [self setupCaptureManager:FrontFacingCamera];
         cameraBeingUsed = FrontFacingCamera;
         [self composeInterface];
@@ -334,20 +338,16 @@
 #pragma mark - Camera Session Manager Delegate Methods
 
 -(void)cameraSessionManagerDidCaptureImage {
-    NSLog(@"SUCEEDED IN CAPTURING IMAGE");
     [self setImageToTheDelegate];
 }
 
 -(void)cameraSessionManagerFailedToCaptureImage {
-    NSLog(@"FAILED TO CAPTURE IMAGE");
 }
 
 -(void)cameraSessionManagerDidReportAvailability:(BOOL)deviceAvailability forCameraType:(CameraType)cameraType {
-    NSLog(@"%@ CAMERA %@ AVAILABLE", (cameraType ? @"REAR-FACING" : @"FRONT-FACING"), (deviceAvailability ? @"IS" : @"IS NOT"));
 }
 
 -(void)cameraSessionManagerDidReportDeviceStatistics:(CameraStatistics)deviceStatistics {
-    //NSLog(@"ISO: %f", deviceStatistics.ISO);
 }
 
 #pragma mark - Helper Methods
