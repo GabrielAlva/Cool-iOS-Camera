@@ -1,14 +1,14 @@
 //
-//  CameraSessionView.m
-//  CameraWithAVFoundation
+//  CACameraSessionDelegate.h
 //
-//  Created by Christopher Cohen on 1/23/15.
+//  Created by Christopher Cohen & Gabriel Alvarado on 1/23/15.
 //  Copyright (c) 2015 Gabriel Alvarado. All rights reserved.
 //
 
 #import "CameraSessionView.h"
 #import "CaptureSessionManager.h"
 #import <ImageIO/ImageIO.h>
+
 //Custom UI classes
 #import "CameraShutterButton.h"
 #import "CameraToggleButton.h"
@@ -28,12 +28,12 @@
 
 //Object References
 @property (nonatomic, strong) CaptureSessionManager *captureManager;
-@property (nonatomic, strong) CameraShutterButton   *cameraShutter;
-@property (nonatomic, strong) CameraToggleButton    *cameraToggle;
-@property (nonatomic, strong) CameraFlashButton     *cameraFlash;
-@property (nonatomic, strong) CameraDismissButton   *cameraDismiss;
-@property (nonatomic, strong) CameraFocalReticule   *focalReticule;
-@property (nonatomic, strong) UIView                *topBarView;
+@property (nonatomic, strong) CameraShutterButton *cameraShutter;
+@property (nonatomic, strong) CameraToggleButton *cameraToggle;
+@property (nonatomic, strong) CameraFlashButton *cameraFlash;
+@property (nonatomic, strong) CameraDismissButton *cameraDismiss;
+@property (nonatomic, strong) CameraFocalReticule *focalReticule;
+@property (nonatomic, strong) UIView *topBarView;
 
 //Temporary/Diagnostic properties
 @property (nonatomic, strong) UILabel *ISOLabel, *apertureLabel, *shutterSpeedLabel;
@@ -95,10 +95,10 @@
     if (_captureManager) {
         
         //Button Visual attribution
-        _cameraShutter.frame            = (CGRect){0,0, IPHONE_SHUTTER_BUTTON_SIZE};
-        _cameraShutter.center           = CGPointMake(self.center.x, self.center.y*1.75);
-        _cameraShutter.tag              = ShutterButtonTag;
-        _cameraShutter.backgroundColor  = [UIColor clearColor];
+        _cameraShutter.frame = (CGRect){0,0, IPHONE_SHUTTER_BUTTON_SIZE};
+        _cameraShutter.center = CGPointMake(self.center.x, self.center.y*1.75);
+        _cameraShutter.tag = ShutterButtonTag;
+        _cameraShutter.backgroundColor = [UIColor clearColor];
         
         //Button target
         [_cameraShutter addTarget:self action:@selector(inputManager:) forControlEvents:UIControlEventTouchUpInside];
@@ -111,8 +111,8 @@
     if (_topBarView) {
         
         //Setup visual attribution for bar
-        _topBarView.frame               = (CGRect){0,0, IPHONE_OVERLAY_BAR_SIZE};
-        _topBarView.backgroundColor     = [UIColor colorWithRed: 0.176 green: 0.478 blue: 0.529 alpha: 0.64];
+        _topBarView.frame  = (CGRect){0,0, IPHONE_OVERLAY_BAR_SIZE};
+        _topBarView.backgroundColor = [UIColor colorWithRed: 0.176 green: 0.478 blue: 0.529 alpha: 0.64];
         [self addSubview:_topBarView];
         
         //Add the flash button
@@ -120,9 +120,9 @@
         
         if (_cameraFlash) {
             
-            _cameraFlash.frame  = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
+            _cameraFlash.frame = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
             _cameraFlash.center = CGPointMake(_topBarView.center.x * 0.80, _topBarView.center.y);
-            _cameraFlash.tag    = FlashButtonTag;
+            _cameraFlash.tag = FlashButtonTag;
             [_topBarView addSubview:_cameraFlash];
         }
         
@@ -131,9 +131,9 @@
         
         if (_cameraToggle) {
             
-            _cameraToggle.frame     = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
-            _cameraToggle.center    = CGPointMake(_topBarView.center.x * 1.20, _topBarView.center.y);
-            _cameraToggle.tag       = ToggleButtonTag;
+            _cameraToggle.frame = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
+            _cameraToggle.center = CGPointMake(_topBarView.center.x * 1.20, _topBarView.center.y);
+            _cameraToggle.tag = ToggleButtonTag;
             [_topBarView addSubview:_cameraToggle];
         }
         
@@ -142,9 +142,9 @@
         
         if (_cameraDismiss) {
             
-            _cameraDismiss.frame    = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
-            _cameraDismiss.center   = CGPointMake(20, _topBarView.center.y);
-            _cameraDismiss.tag      = DismissButtonTag;
+            _cameraDismiss.frame = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
+            _cameraDismiss.center = CGPointMake(20, _topBarView.center.y);
+            _cameraDismiss.tag = DismissButtonTag;
             [_topBarView addSubview:_cameraDismiss];
         }
         
@@ -160,9 +160,9 @@
     
     if (_focalReticule) {
         
-        _focalReticule.frame               = (CGRect){0,0, 60, 60};
-        _focalReticule.backgroundColor     = [UIColor clearColor];
-        _focalReticule.hidden              = YES;
+        _focalReticule.frame = (CGRect){0,0, 60, 60};
+        _focalReticule.backgroundColor = [UIColor clearColor];
+        _focalReticule.hidden = YES;
         [self addSubview:_focalReticule];
     }
     
@@ -293,9 +293,9 @@
                 _cameraFlash.center = CGPointMake(_topBarView.center.x * 0.80, _topBarView.center.y);
                 
                 _cameraToggle.transform = transform;
-                _cameraToggle.center    = CGPointMake(_topBarView.center.x * 1.20, _topBarView.center.y);
+                _cameraToggle.center = CGPointMake(_topBarView.center.x * 1.20, _topBarView.center.y);
                 
-                _cameraDismiss.center   = CGPointMake(20, _topBarView.center.y);
+                _cameraDismiss.center = CGPointMake(20, _topBarView.center.y);
             }];
         }
             break;
@@ -309,9 +309,9 @@
                 _cameraFlash.center = CGPointMake(_topBarView.center.x * 1.25, _topBarView.center.y);
                 
                 _cameraToggle.transform = transform;
-                _cameraToggle.center    = CGPointMake(_topBarView.center.x * 1.60, _topBarView.center.y);
+                _cameraToggle.center = CGPointMake(_topBarView.center.x * 1.60, _topBarView.center.y);
                 
-                _cameraDismiss.center   = CGPointMake(_topBarView.center.x * 0.25, _topBarView.center.y);
+                _cameraDismiss.center = CGPointMake(_topBarView.center.x * 0.25, _topBarView.center.y);
             }];
         }
             break;
@@ -325,9 +325,9 @@
                 _cameraFlash.center = CGPointMake(_topBarView.center.x * 0.40, _topBarView.center.y);
                 
                 _cameraToggle.transform = transform;
-                _cameraToggle.center    = CGPointMake(_topBarView.center.x * 0.75, _topBarView.center.y);
+                _cameraToggle.center = CGPointMake(_topBarView.center.x * 0.75, _topBarView.center.y);
                 
-                _cameraDismiss.center   = CGPointMake(_topBarView.center.x * 1.75, _topBarView.center.y);
+                _cameraDismiss.center = CGPointMake(_topBarView.center.x * 1.75, _topBarView.center.y);
             }];
         }
             break;
@@ -338,7 +338,15 @@
 #pragma mark - Camera Session Manager Delegate Methods
 
 -(void)cameraSessionManagerDidCaptureImage {
-    [self setImageToTheDelegate];
+    
+    if (self.delegate) {
+        
+        if ([self.delegate respondsToSelector:@selector(didCaptureImage:)])
+            [self.delegate didCaptureImage:[[self captureManager] stillImage]];
+        
+        if ([self.delegate respondsToSelector:@selector(didCaptureImageWithData:)])
+            [self.delegate didCaptureImageWithData:[[self captureManager] stillImageData]];
+    }
 }
 
 -(void)cameraSessionManagerFailedToCaptureImage {
@@ -385,13 +393,6 @@
         }
     }
     else { completionHandler(); }
-}
-
-- (void)setImageToTheDelegate
-{
-    id<CameraManagerDelegate> strongDelegate = self.delegate;
-    if ([strongDelegate respondsToSelector:@selector(capturedImage:)]) { [strongDelegate capturedImage:[[self captureManager] stillImage]]; }
-    if ([strongDelegate respondsToSelector:@selector(capturedImageData:)]) { [strongDelegate capturedImageData:[[self captureManager] stillImageData]]; }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

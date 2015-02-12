@@ -9,7 +9,7 @@
 #import "CameraViewController.h"
 #import "CameraSessionView.h"
 
-@interface CameraViewController ()
+@interface CameraViewController () <CACameraSessionDelegate>
 
 @end
 
@@ -32,6 +32,14 @@
     //[cameraView hideDismissButton];
     
     [self.view insertSubview:cameraView atIndex:0];
+}
+
+-(void)didCaptureImage:(UIImage *)image {
+    NSLog(@"CAPTURED IMAGE");
+}
+
+-(void)didCaptureImageWithData:(NSData *)imageData {
+    NSLog(@"CAPTURED IMAGE");
 }
 
 - (BOOL)prefersStatusBarHidden {

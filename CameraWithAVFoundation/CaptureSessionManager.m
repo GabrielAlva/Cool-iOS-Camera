@@ -11,25 +11,19 @@
 
 @implementation CaptureSessionManager
 
-@synthesize captureSession;
-@synthesize previewLayer;
-@synthesize stillImageOutput;
-@synthesize stillImage;
-@synthesize stillImageData;
-
 #pragma mark Capture Session Configuration
 
 - (id)init {
-	if ((self = [super init])) {
-		[self setCaptureSession:[[AVCaptureSession alloc] init]];
-        captureSession.sessionPreset = AVCaptureSessionPresetHigh;
-	}
-	return self;
+    if ((self = [super init])) {
+        [self setCaptureSession:[[AVCaptureSession alloc] init]];
+        _captureSession.sessionPreset = AVCaptureSessionPresetHigh;
+    }
+    return self;
 }
 
 - (void)addVideoPreviewLayer {
-	[self setPreviewLayer:[[AVCaptureVideoPreviewLayer alloc] initWithSession:[self captureSession]]];
-	[[self previewLayer] setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    [self setPreviewLayer:[[AVCaptureVideoPreviewLayer alloc] initWithSession:[self captureSession]]];
+    [[self previewLayer] setVideoGravity:AVLayerVideoGravityResizeAspectFill];
 }
 
 - (void)initiateCaptureSessionForCamera:(CameraType)cameraType {
@@ -41,7 +35,7 @@
             case FrontFacingCamera: if ([device position] == AVCaptureDevicePositionFront)  _activeCamera = device; break;
         }
     }
-        
+    
     NSError *error          = nil;
     BOOL deviceAvailability = YES;
     
@@ -62,7 +56,7 @@
     [[NSOperationQueue new] addOperationWithBlock:^{
         do {
             [NSThread sleepForTimeInterval:interval];
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{                
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 if (self.delegate) [self.delegate cameraSessionManagerDidReportDeviceStatistics:cameraStatisticsMake(_activeCamera.lensAperture, CMTimeGetSeconds(_activeCamera.exposureDuration), _activeCamera.ISO, _activeCamera.lensPosition)];
             }];
         } while (blockSafeSelf);
@@ -75,55 +69,7 @@
     NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys:AVVideoCodecJPEG,AVVideoCodecKey,nil];
     [[self stillImageOutput] setOutputSettings:outputSettings];
     
-    AVCaptureConnection *videoConnection = nil;
-    
-    for (AVCaptureConnection *connection in [[self stillImageOutput] connections]) {
-        for (AVCaptureInputPort *port in [connection inputPorts]) {
-            if ([[port mediaType] isEqual:AVMediaTypeVideo] ) {
-                videoConnection = connection;
-                AVCaptureVideoOrientation newOrientation;
-                switch ([[UIDevice currentDevice] orientation]) {
-                    case UIDeviceOrientationPortrait:
-                        newOrientation = AVCaptureVideoOrientationPortrait;
-                        break;
-                    case UIDeviceOrientationPortraitUpsideDown:
-                        newOrientation = AVCaptureVideoOrientationPortraitUpsideDown;
-                        break;
-                    case UIDeviceOrientationLandscapeLeft:
-                        newOrientation = AVCaptureVideoOrientationLandscapeRight;
-                        break;
-                    case UIDeviceOrientationLandscapeRight:
-                        newOrientation = AVCaptureVideoOrientationLandscapeLeft;
-                        break;
-                    default:
-                        newOrientation = AVCaptureVideoOrientationPortrait;
-                }
-                [videoConnection setVideoOrientation: newOrientation];
-                break;
-            }
-        }
-        if (videoConnection) {
-            AVCaptureVideoOrientation newOrientation;
-            switch ([[UIDevice currentDevice] orientation]) {
-                case UIDeviceOrientationPortrait:
-                    newOrientation = AVCaptureVideoOrientationPortrait;
-                    break;
-                case UIDeviceOrientationPortraitUpsideDown:
-                    newOrientation = AVCaptureVideoOrientationPortraitUpsideDown;
-                    break;
-                case UIDeviceOrientationLandscapeLeft:
-                    newOrientation = AVCaptureVideoOrientationLandscapeRight;
-                    break;
-                case UIDeviceOrientationLandscapeRight:
-                    newOrientation = AVCaptureVideoOrientationLandscapeLeft;
-                    break;
-                default:
-                    newOrientation = AVCaptureVideoOrientationPortrait;
-            }
-            [videoConnection setVideoOrientation: newOrientation];
-            break;
-        }
-    }
+    [self getOrientationAdaptedCaptureConnection];
     
     [[self captureSession] addOutput:[self stillImageOutput]];
     
@@ -138,83 +84,31 @@
 
 - (void)captureStillImage
 {
-	AVCaptureConnection *videoConnection = nil;
+    AVCaptureConnection *videoConnection = [self getOrientationAdaptedCaptureConnection];
     
-	for (AVCaptureConnection *connection in [[self stillImageOutput] connections]) {
-		for (AVCaptureInputPort *port in [connection inputPorts]) {
-			if ([[port mediaType] isEqual:AVMediaTypeVideo]) {
-				videoConnection = connection;
-                AVCaptureVideoOrientation newOrientation;
-                switch ([[UIDevice currentDevice] orientation]) {
-                    case UIDeviceOrientationPortrait:
-                        newOrientation = AVCaptureVideoOrientationPortrait;
-                        break;
-                    case UIDeviceOrientationPortraitUpsideDown:
-                        newOrientation = AVCaptureVideoOrientationPortraitUpsideDown;
-                        break;
-                    case UIDeviceOrientationLandscapeLeft:
-                        newOrientation = AVCaptureVideoOrientationLandscapeRight;
-                        break;
-                    case UIDeviceOrientationLandscapeRight:
-                        newOrientation = AVCaptureVideoOrientationLandscapeLeft;
-                        break;
-                    default:
-                        newOrientation = AVCaptureVideoOrientationPortrait;
-                }
-                [videoConnection setVideoOrientation: newOrientation];
-				break;
-			}
-		}
-		if (videoConnection) {
-            AVCaptureVideoOrientation newOrientation;
-            switch ([[UIDevice currentDevice] orientation]) {
-                case UIDeviceOrientationPortrait:
-                    newOrientation = AVCaptureVideoOrientationPortrait;
-                    break;
-                case UIDeviceOrientationPortraitUpsideDown:
-                    newOrientation = AVCaptureVideoOrientationPortraitUpsideDown;
-                    break;
-                case UIDeviceOrientationLandscapeLeft:
-                    newOrientation = AVCaptureVideoOrientationLandscapeRight;
-                    break;
-                case UIDeviceOrientationLandscapeRight:
-                    newOrientation = AVCaptureVideoOrientationLandscapeLeft;
-                    break;
-                default:
-                    newOrientation = AVCaptureVideoOrientationPortrait;
-            }
-            [videoConnection setVideoOrientation: newOrientation];
-            break;
-        }
-	}
-    
-	NSLog(@"about to request a capture from: %@", [self stillImageOutput]);
-	[[self stillImageOutput] captureStillImageAsynchronouslyFromConnection:videoConnection
-                                                         completionHandler:^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
-                                                             CFDictionaryRef exifAttachments = CMGetAttachment(imageSampleBuffer, kCGImagePropertyExifDictionary, NULL);
-                                                             if (exifAttachments) {
-                                                                 NSLog(@"attachements: %@", exifAttachments);
-                                                             } else {
-                                                                 NSLog(@"no attachments");
-                                                             }
-                                                             NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
-                                                             UIImage *image = [[UIImage alloc] initWithData:imageData];
-                                                             [self setStillImage:image];
-                                                             [self setStillImageData:imageData];
-                                                             
-                                                             if (self.delegate) [self.delegate cameraSessionManagerDidCaptureImage];
-                                                                 
-                                                         }];
+    if (videoConnection) {
+        [[self stillImageOutput] captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:
+         ^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
+             CFDictionaryRef exifAttachments = CMGetAttachment(imageSampleBuffer, kCGImagePropertyExifDictionary, NULL);
+             if (exifAttachments) {
+                 //Attachements Found
+             } else {
+                 //No Attachments
+             }
+             NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
+             UIImage *image = [[UIImage alloc] initWithData:imageData];
+             [self setStillImage:image];
+             [self setStillImageData:imageData];
+             
+             if (self.delegate) [self.delegate cameraSessionManagerDidCaptureImage];
+         }];
+        
+    }
 }
 
 - (void)dealloc {
     
-	[[self captureSession] stopRunning];
-    
-	previewLayer = nil;
-	captureSession = nil;
-    stillImageOutput = nil;
-    stillImage = nil;
+    [[self captureSession] stopRunning];
 }
 
 - (void)setEnableTorch:(BOOL)enableTorch
@@ -229,6 +123,51 @@
         else { [device setTorchMode:AVCaptureTorchModeOff]; }
         [device unlockForConfiguration];
     }
+}
+
+#pragma mark - Helper Method(s)
+
+- (void)assignVideoOrienationForVideoConnection:(AVCaptureConnection *)videoConnection
+{
+    AVCaptureVideoOrientation newOrientation;
+    switch ([[UIDevice currentDevice] orientation]) {
+        case UIDeviceOrientationPortrait:
+            newOrientation = AVCaptureVideoOrientationPortrait;
+            break;
+        case UIDeviceOrientationPortraitUpsideDown:
+            newOrientation = AVCaptureVideoOrientationPortraitUpsideDown;
+            break;
+        case UIDeviceOrientationLandscapeLeft:
+            newOrientation = AVCaptureVideoOrientationLandscapeRight;
+            break;
+        case UIDeviceOrientationLandscapeRight:
+            newOrientation = AVCaptureVideoOrientationLandscapeLeft;
+            break;
+        default:
+            newOrientation = AVCaptureVideoOrientationPortrait;
+    }
+    [videoConnection setVideoOrientation: newOrientation];
+}
+
+- (AVCaptureConnection *)getOrientationAdaptedCaptureConnection
+{
+    AVCaptureConnection *videoConnection = nil;
+    
+    for (AVCaptureConnection *connection in [[self stillImageOutput] connections]) {
+        for (AVCaptureInputPort *port in [connection inputPorts]) {
+            if ([[port mediaType] isEqual:AVMediaTypeVideo] ) {
+                videoConnection = connection;
+                [self assignVideoOrienationForVideoConnection:videoConnection];
+                break;
+            }
+        }
+        if (videoConnection) {
+            [self assignVideoOrienationForVideoConnection:videoConnection];
+            break;
+        }
+    }
+    
+    return videoConnection;
 }
 
 @end

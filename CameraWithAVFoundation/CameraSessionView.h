@@ -1,25 +1,24 @@
 //
-//  CameraSessionView.h
-//  CameraWithAVFoundation
+//  CACameraSessionDelegate.h
 //
-//  Created by Christopher Cohen on 1/23/15.
+//  Created by Christopher Cohen & Gabriel Alvarado on 1/23/15.
 //  Copyright (c) 2015 Gabriel Alvarado. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 ///Protocol Definition
-@protocol CameraManagerDelegate <NSObject>
+@protocol CACameraSessionDelegate <NSObject>
 
-@optional - (void)capturedImage:(UIImage *)image;
-@optional - (void)capturedImageData:(NSData *)imageData;
+@optional - (void)didCaptureImage:(UIImage *)image;
+@optional - (void)didCaptureImageWithData:(NSData *)imageData;
 
 @end
 
 @interface CameraSessionView : UIView
 
 //Delegate Property
-@property (nonatomic, weak) id<CameraManagerDelegate>delegate;
+@property (nonatomic, weak) id<CACameraSessionDelegate>delegate;
 
 //API Functions
 - (void)setTopBarColor:(UIColor *)topBarColor;
