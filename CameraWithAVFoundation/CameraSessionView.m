@@ -337,10 +337,10 @@
 
 #pragma mark - Camera Session Manager Delegate Methods
 
--(void)cameraSessionManagerDidCaptureImage {
-    
-    if (self.delegate) {
-        
+-(void)cameraSessionManagerDidCaptureImage
+{
+    if (self.delegate)
+    {
         if ([self.delegate respondsToSelector:@selector(didCaptureImage:)])
             [self.delegate didCaptureImage:[[self captureManager] stillImage]];
         

@@ -100,7 +100,9 @@
              [self setStillImage:image];
              [self setStillImageData:imageData];
              
-             if (self.delegate) [self.delegate cameraSessionManagerDidCaptureImage];
+             if (self.delegate)
+                 [self.delegate cameraSessionManagerDidCaptureImage];
+             
          }];
         
     }

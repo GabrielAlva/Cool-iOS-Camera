@@ -18,7 +18,7 @@
 @interface CameraSessionView : UIView
 
 //Delegate Property
-@property (nonatomic, weak) id<CACameraSessionDelegate>delegate;
+@property (nonatomic, weak) id <CACameraSessionDelegate> delegate;
 
 //API Functions
 - (void)setTopBarColor:(UIColor *)topBarColor;
