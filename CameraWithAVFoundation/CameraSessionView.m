@@ -246,11 +246,9 @@
     _animationInProgress = YES; //Disables input manager
     
     [UIView animateWithDuration:.1 animations:^{
-        self.alpha = 0;
         _cameraShutter.transform = CGAffineTransformMakeScale(1.25, 1.25);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:.1 animations:^{
-            self.alpha = 1;
             _cameraShutter.transform = CGAffineTransformMakeScale(1, 1);
         } completion:^(BOOL finished) {
             

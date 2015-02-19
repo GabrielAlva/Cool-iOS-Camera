@@ -11,6 +11,8 @@
 
 @interface CameraViewController () <CACameraSessionDelegate>
 
+@property (nonatomic, strong) CameraSessionView *cameraView;
+
 @end
 
 @implementation CameraViewController
@@ -19,12 +21,15 @@
     
     [super viewDidLoad];
     
+}
+
+- (IBAction)launchCamera:(id)sender {
     //Set white status bar
     [self setNeedsStatusBarAppearanceUpdate];
     
     //Instantiate the camera view & set the delegate
-    CameraSessionView *cameraView = [[CameraSessionView alloc] initWithFrame:self.view.frame];
-    cameraView.delegate = self;
+    _cameraView = [[CameraSessionView alloc] initWithFrame:self.view.frame];
+    _cameraView.delegate = self;
     
     //Example Customization
     //[cameraView setTopBarColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha: 0.64]];
@@ -32,12 +37,14 @@
     //[cameraView hideCameraToogleButton];
     //[cameraView hideDismissButton];
     
-    [self.view insertSubview:cameraView atIndex:0];
+    //[self.view insertSubview:cameraView atIndex:0];
+    [self.view addSubview:_cameraView];
 }
 
 -(void)didCaptureImage:(UIImage *)image {
     NSLog(@"CAPTURED IMAGE");
     //UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    //[cameraView removeFromSuperview];
 }
 
 -(void)didCaptureImageWithData:(NSData *)imageData {

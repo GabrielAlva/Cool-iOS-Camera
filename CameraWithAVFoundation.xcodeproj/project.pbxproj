@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B472D891A729EB000C85DAB /* CameraSessionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B472D881A729EB000C85DAB /* CameraSessionView.m */; };
 		1BA105E11A7A9CE1000B1A36 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA105E01A7A9CE1000B1A36 /* Constants.m */; };
+		64ABCCD01A950B8900FE8473 /* LaunchCameraButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ABCCCF1A950B8900FE8473 /* LaunchCameraButton.m */; };
 		64ABD10E18FF19E000B2E420 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD10D18FF19E000B2E420 /* Foundation.framework */; };
 		64ABD11018FF19E000B2E420 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD10F18FF19E000B2E420 /* CoreGraphics.framework */; };
 		64ABD11218FF19E000B2E420 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD11118FF19E000B2E420 /* UIKit.framework */; };
@@ -55,6 +56,8 @@
 		1B472D881A729EB000C85DAB /* CameraSessionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraSessionView.m; sourceTree = "<group>"; };
 		1BA105E01A7A9CE1000B1A36 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		1BDD39D11A745E6700A200BA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		64ABCCCE1A950B8900FE8473 /* LaunchCameraButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchCameraButton.h; sourceTree = "<group>"; };
+		64ABCCCF1A950B8900FE8473 /* LaunchCameraButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchCameraButton.m; sourceTree = "<group>"; };
 		64ABD10A18FF19E000B2E420 /* CameraWithAVFoundation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraWithAVFoundation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64ABD10D18FF19E000B2E420 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		64ABD10F18FF19E000B2E420 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -270,6 +273,8 @@
 				64D101DA1A7439D100316FAA /* CameraDismissButton.m */,
 				64D101DF1A75EA8A00316FAA /* CameraFocalReticule.h */,
 				64D101E01A75EA8A00316FAA /* CameraFocalReticule.m */,
+				64ABCCCE1A950B8900FE8473 /* LaunchCameraButton.h */,
+				64ABCCCF1A950B8900FE8473 /* LaunchCameraButton.m */,
 			);
 			name = CameraViewComponents;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 			files = (
 				64ABD12718FF19E000B2E420 /* CameraViewController.m in Sources */,
 				64D101D51A7439B900316FAA /* CameraFlashButton.m in Sources */,
+				64ABCCD01A950B8900FE8473 /* LaunchCameraButton.m in Sources */,
 				1B472D891A729EB000C85DAB /* CameraSessionView.m in Sources */,
 				64D101DB1A7439D100316FAA /* CameraDismissButton.m in Sources */,
 				64ABD14E18FF215A00B2E420 /* CaptureSessionManager.m in Sources */,
