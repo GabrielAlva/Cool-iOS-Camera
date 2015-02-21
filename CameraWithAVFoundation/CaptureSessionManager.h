@@ -40,5 +40,6 @@
 - (void)captureStillImage;
 - (void)addVideoPreviewLayer;
 - (void)initiateCaptureSessionForCamera:(CameraType)cameraType;
+- (void)stop;
 
 @end

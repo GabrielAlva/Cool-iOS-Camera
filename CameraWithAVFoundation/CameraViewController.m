@@ -24,33 +24,45 @@
 }
 
 - (IBAction)launchCamera:(id)sender {
+    
     //Set white status bar
     [self setNeedsStatusBarAppearanceUpdate];
     
-    //Instantiate the camera view & set the delegate
+    //If previous intance of a '_cameraView' object exists, remove it's preview layer
+    if (_cameraView) [_cameraView removeFromSuperview];
+    _cameraView = nil;
+    
+    //Instantiate the camera view & assign its frame
     _cameraView = [[CameraSessionView alloc] initWithFrame:self.view.frame];
-    _cameraView.delegate = self;
     
-    //Example Customization
-    //[cameraView setTopBarColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha: 0.64]];
-    //[cameraView hideFlashButton];
-    //[cameraView hideCameraToogleButton];
-    //[cameraView hideDismissButton];
+    if (_cameraView) {
+        
+        //Set the delegate for the camera view
+        _cameraView.delegate = self;
+        
+        //Example Customization
+        //[cameraView setTopBarColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha: 0.64]];
+        //[cameraView hideFlashButton];
+        //[cameraView hideCameraToogleButton];
+        //[cameraView hideDismissButton];
+        
+        //[self.view insertSubview:cameraView atIndex:0];
+        [self.view addSubview:_cameraView];
+    }
     
-    //[self.view insertSubview:cameraView atIndex:0];
-    [self.view addSubview:_cameraView];
 }
 
 -(void)didCaptureImage:(UIImage *)image {
     NSLog(@"CAPTURED IMAGE");
-    //UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-    //[cameraView removeFromSuperview];
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    [self.cameraView removeFromSuperview];
 }
 
 -(void)didCaptureImageWithData:(NSData *)imageData {
     NSLog(@"CAPTURED IMAGE DATA");
-    UIImage *image = [[UIImage alloc] initWithData:imageData];
-    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    //UIImage *image = [[UIImage alloc] initWithData:imageData];
+    //UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    //[self.cameraView removeFromSuperview];
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo

@@ -222,6 +222,7 @@
 }
 
 - (void)onTapDismissButton {
+    [_captureManager stop];
     [self removeFromSuperview];
 }
 
@@ -278,7 +279,7 @@
 }
 
 - (void)orientationChanged:(NSNotification *)notification{
-    
+    NSLog(@"Orientation Changed");
     //Animate top bar buttons on orientation changes
     switch ([[UIDevice currentDevice] orientation]) {
         case UIDeviceOrientationPortrait:
@@ -432,6 +433,11 @@
 - (void)hideDismissButton
 {
     _cameraDismiss.hidden = YES;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

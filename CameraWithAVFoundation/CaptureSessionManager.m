@@ -108,11 +108,6 @@
     }
 }
 
-- (void)dealloc {
-    
-    [[self captureSession] stopRunning];
-}
-
 - (void)setEnableTorch:(BOOL)enableTorch
 {
     _enableTorch = enableTorch;
@@ -170,6 +165,27 @@
     }
     
     return videoConnection;
+}
+
+#pragma mark - Cleanup Functions
+
+// stop the camera, otherwise it will lead to memory crashes
+- (void)stop
+{
+    if(self.captureSession.inputs.count > 0) {
+        AVCaptureInput* input = [self.captureSession.inputs objectAtIndex:0];
+        [self.captureSession removeInput:input];
+    }
+    if(self.captureSession.outputs.count > 0) {
+        AVCaptureVideoDataOutput* output = [self.captureSession.outputs objectAtIndex:0];
+        [self.captureSession removeOutput:output];
+    }
+    
+    [self.captureSession stopRunning];
+}
+
+- (void)dealloc {
+    [self stop];
 }
 
 @end
