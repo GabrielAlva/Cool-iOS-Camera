@@ -12,8 +12,10 @@
 
 ///Macros
 
-#define IPHONE_SHUTTER_BUTTON_SIZE      CGSizeMake([[UIScreen mainScreen] bounds].size.width * 0.21, [[UIScreen mainScreen] bounds].size.width * 0.21)
-#define IPHONE_OVERLAY_BAR_SIZE         CGSizeMake([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height * 0.1)
+#define IPHONE_SHUTTER_BUTTON_SIZE     CGSizeMake([[UIScreen mainScreen] bounds].size.width * 0.21, [[UIScreen mainScreen] bounds].size.width * 0.21)
+
+#define IPHONE_OVERLAY_BAR_SIZE        CGSizeMake([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height * 0.1)
+
 #define IPHONE_OVERLAY_BAR_BUTTON_SIZE  CGSizeMake([[UIScreen mainScreen] bounds].size.height * 0.06, [[UIScreen mainScreen] bounds].size.height * 0.06)
 
 ///Type Definitions
