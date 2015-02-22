@@ -4,7 +4,12 @@
 <br />
 
 ## Features
-- qwerty
+- Extremely simple and easy to use
+- Customizable interface
+- Code-made UI assets that do not loose resolution quality & resize dynamically depending on the screen size of the device.
+- Overlays over any presented view controllers or views
+- Made for iPhone & iPad
+- Built for iOS 8
 
 ## How To
 
