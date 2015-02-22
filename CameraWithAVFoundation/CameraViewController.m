@@ -28,28 +28,18 @@
     //Set white status bar
     [self setNeedsStatusBarAppearanceUpdate];
     
-    //If previous intance of a '_cameraView' object exists, remove it's preview layer
-    if (_cameraView) [_cameraView removeFromSuperview];
-    _cameraView = nil;
-    
     //Instantiate the camera view & assign its frame
     _cameraView = [[CameraSessionView alloc] initWithFrame:self.view.frame];
     
-    if (_cameraView) {
-        
-        //Set the delegate for the camera view
-        _cameraView.delegate = self;
-        
-        //____________________________Example Customization____________________________
-        //[cameraView setTopBarColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha: 0.64]];
-        //[cameraView hideFlashButton]; //On iPad flash is not present, hence it wont appear.
-        //[cameraView hideCameraToogleButton];
-        //[cameraView hideDismissButton];
-        
-        //[self.view insertSubview:cameraView atIndex:0];
-        [self.view addSubview:_cameraView];
-    }
+    //Set the camera view's delegate and add it as a subview
+    _cameraView.delegate = self;
+    [self.view addSubview:_cameraView];
     
+    //____________________________Example Customization____________________________
+    //[_cameraView setTopBarColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha: 0.64]];
+    //[_cameraView hideFlashButton]; //On iPad flash is not present, hence it wont appear.
+    //[_cameraView hideCameraToogleButton];
+    //[_cameraView hideDismissButton];
 }
 
 -(void)didCaptureImage:(UIImage *)image {

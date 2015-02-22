@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Gabriel Alvarado. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#import "CaptureSessionManager.h"
 
 @interface CameraViewController : UIViewController
 
