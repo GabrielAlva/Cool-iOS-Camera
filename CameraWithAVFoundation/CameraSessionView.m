@@ -279,7 +279,7 @@
 }
 
 - (void)orientationChanged:(NSNotification *)notification{
-    NSLog(@"Orientation Changed");
+    
     //Animate top bar buttons on orientation changes
     switch ([[UIDevice currentDevice] orientation]) {
         case UIDeviceOrientationPortrait:
