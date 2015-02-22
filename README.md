@@ -11,7 +11,48 @@
 - Made for iPhone & iPad
 - Built for iOS 8
 
-## How To
+## Installation
+* Drag the `CustomizableCamera` folder into your project.
+* import `"CameraSessionView.h"` to the view controller that will invoke the camera.
+
+## Usage 
+
+Using **CustomizableCamera** in your app is very fast and simple.
+
+### Displaying the camera view and adopting its delegate
+
+After importing the `"CameraSessionView.h"` into the view controller, adopt its `<CACameraSessionDelegate>` delegate.
+
+Next, declare a CameraSessionView property:
+```
+@property (nonatomic, strong) CameraSessionView *cameraView;
+```
+
+Now in the place where you would like to invoke the camera view (on the action of a button or viewDidLoad) instantiate it, set it's delegate and added as a subview:
+```
+_cameraView = [[CameraSessionView alloc] initWithFrame:self.view.frame];
+_cameraView.delegate = self;
+[self.view addSubview:_cameraView];
+```
+
+Now implement **one** of this two delegate functions depending on weather you would like to get back a `UIImage` or `NSData` for an image when the shutter on the camera is pressed,
+
+For a UIImage:
+```
+-(void)didCaptureImage:(UIImage *)image {
+  //Use the image that is received
+}
+```
+For NSData:
+```
+-(void)didCaptureImageWithData:(NSData *)imageData {
+  //Use the image's data that is received
+}
+```
+
+### Dismissing TAOverlay
+
+You can hide the camera view either by pressing the dismiss button on it or by writing `[self.cameraView removeFromSuperview];` on the invoking view controller (it can be written inside one of the two delegate functions in order to dismiss it after taking a photo). 
 
 
 ## License
