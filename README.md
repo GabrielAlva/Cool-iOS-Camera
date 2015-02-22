@@ -12,7 +12,7 @@
 - Built for iOS 8
 
 ## Installation
-* Drag the `CustomizableCamera` folder into your project.
+* Drag the `CustomizableCamera` folder found on the demo app into your project.
 * import `"CameraSessionView.h"` to the view controller that will invoke the camera.
 
 ## Usage 
@@ -50,10 +50,33 @@ For NSData:
 }
 ```
 
-### Dismissing TAOverlay
+### Dismissing the camera view
 
 You can hide the camera view either by pressing the dismiss button on it or by writing `[self.cameraView removeFromSuperview];` on the invoking view controller (it can be written inside one of the two delegate functions in order to dismiss it after taking a photo). 
 
+##Customization
+
+Once you have your `CameraSessionView` instance you can customize the appearance of the camera using its api, below are some samples:
+
+To change the color of the top bar including its transparency:
+```
+[_cameraView setTopBarColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha: 0.64]];
+```
+To hide the flash button:
+```
+[_cameraView hideFlashButton]; //On iPad flash is not present, hence it wont appear.
+```
+To hide the switch camera's button:
+```
+[_cameraView hideCameraToogleButton];
+```
+To hide the dismiss button:
+```
+[_cameraView hideDismissButton];
+```
+##Example
+
+You can find a full example on usage and customization on the Xcode project attached to this repository.
 
 ## License
 
