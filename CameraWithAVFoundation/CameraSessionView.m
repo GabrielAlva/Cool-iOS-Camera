@@ -19,6 +19,11 @@
 
 @interface CameraSessionView () <CaptureSessionManagerDelegate>
 {
+    //Size of the UI elements variables
+    CGSize shutterButtonSize;
+    CGSize topBarSize;
+    CGSize barButtonItemSize;
+    
     //Variable vith the current camera being used (Rear/Front)
     CameraType cameraBeingUsed;
 }
@@ -89,13 +94,30 @@
     //Adding notifier for orientation changes
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
     
+    
+    //Define adaptable sizing variables for UI elements to the right device family (iPhone or iPad)
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        //Declare the sizing of the UI elements for iPad
+        shutterButtonSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width * 0.1, [[UIScreen mainScreen] bounds].size.width * 0.1);
+        topBarSize        = CGSizeMake([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height * 0.0795);
+        barButtonItemSize = CGSizeMake([[UIScreen mainScreen] bounds].size.height * 0.06, [[UIScreen mainScreen] bounds].size.height * 0.0439);
+    } else
+    {
+        //Declare the sizing of the UI elements for iPhone
+        shutterButtonSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width * 0.21, [[UIScreen mainScreen] bounds].size.width * 0.21);
+        topBarSize        = CGSizeMake([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height * 0.1);
+        barButtonItemSize = CGSizeMake([[UIScreen mainScreen] bounds].size.height * 0.06, [[UIScreen mainScreen] bounds].size.height * 0.06);
+    }
+    
+    
     //Create shutter button
     _cameraShutter = [CameraShutterButton new];
     
     if (_captureManager) {
         
         //Button Visual attribution
-        _cameraShutter.frame = (CGRect){0,0, IPHONE_SHUTTER_BUTTON_SIZE};
+        _cameraShutter.frame = (CGRect){0,0, shutterButtonSize};
         _cameraShutter.center = CGPointMake(self.center.x, self.center.y*1.75);
         _cameraShutter.tag = ShutterButtonTag;
         _cameraShutter.backgroundColor = [UIColor clearColor];
@@ -111,27 +133,23 @@
     if (_topBarView) {
         
         //Setup visual attribution for bar
-        _topBarView.frame  = (CGRect){0,0, IPHONE_OVERLAY_BAR_SIZE};
+        _topBarView.frame  = (CGRect){0,0, topBarSize};
         _topBarView.backgroundColor = [UIColor colorWithRed: 0.176 green: 0.478 blue: 0.529 alpha: 0.64];
         [self addSubview:_topBarView];
         
         //Add the flash button
         _cameraFlash = [CameraFlashButton new];
-        
         if (_cameraFlash) {
-            
-            _cameraFlash.frame = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
+            _cameraFlash.frame = (CGRect){0,0, barButtonItemSize};
             _cameraFlash.center = CGPointMake(_topBarView.center.x * 0.80, _topBarView.center.y);
             _cameraFlash.tag = FlashButtonTag;
-            [_topBarView addSubview:_cameraFlash];
+            if ( UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad ) [_topBarView addSubview:_cameraFlash];
         }
         
         //Add the camera toggle button
         _cameraToggle = [CameraToggleButton new];
-        
         if (_cameraToggle) {
-            
-            _cameraToggle.frame = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
+            _cameraToggle.frame = (CGRect){0,0, barButtonItemSize};
             _cameraToggle.center = CGPointMake(_topBarView.center.x * 1.20, _topBarView.center.y);
             _cameraToggle.tag = ToggleButtonTag;
             [_topBarView addSubview:_cameraToggle];
@@ -139,10 +157,8 @@
         
         //Add the camera dismiss button
         _cameraDismiss = [CameraDismissButton new];
-        
         if (_cameraDismiss) {
-            
-            _cameraDismiss.frame = (CGRect){0,0, IPHONE_OVERLAY_BAR_BUTTON_SIZE};
+            _cameraDismiss.frame = (CGRect){0,0, barButtonItemSize};
             _cameraDismiss.center = CGPointMake(20, _topBarView.center.y);
             _cameraDismiss.tag = DismissButtonTag;
             [_topBarView addSubview:_cameraDismiss];
