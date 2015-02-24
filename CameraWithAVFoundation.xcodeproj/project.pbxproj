@@ -133,20 +133,20 @@
 		649D034C1A9CCE59008C7532 /* CustomizableCamera */ = {
 			isa = PBXGroup;
 			children = (
-				649D034D1A9CCE9C008C7532 /* View Controller */,
+				649D034D1A9CCE9C008C7532 /* Camera View */,
 				64C983471A6F240700462D95 /* Model Classes */,
 				64C983491A6F242E00462D95 /* Graphical Assets */,
 			);
 			name = CustomizableCamera;
 			sourceTree = "<group>";
 		};
-		649D034D1A9CCE9C008C7532 /* View Controller */ = {
+		649D034D1A9CCE9C008C7532 /* Camera View */ = {
 			isa = PBXGroup;
 			children = (
 				1B472D871A729EB000C85DAB /* CameraSessionView.h */,
 				1B472D881A729EB000C85DAB /* CameraSessionView.m */,
 			);
-			name = "View Controller";
+			name = "Camera View";
 			sourceTree = "<group>";
 		};
 		64ABD10118FF19E000B2E420 = {
