@@ -33,6 +33,14 @@
     
     //Set the camera view's delegate and add it as a subview
     _cameraView.delegate = self;
+    
+    //Apply animation effect to present the camera view
+    CATransition *applicationLoadViewIn =[CATransition animation];
+    [applicationLoadViewIn setDuration:0.6];
+    [applicationLoadViewIn setType:kCATransitionReveal];
+    [applicationLoadViewIn setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+    [[_cameraView layer]addAnimation:applicationLoadViewIn forKey:kCATransitionReveal];
+    
     [self.view addSubview:_cameraView];
     
     //____________________________Example Customization____________________________

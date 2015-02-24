@@ -238,8 +238,12 @@
 }
 
 - (void)onTapDismissButton {
-    [_captureManager stop];
-    [self removeFromSuperview];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.center = CGPointMake(self.center.x, self.center.y*3);
+    } completion:^(BOOL finished) {
+        [_captureManager stop];
+        [self removeFromSuperview];
+    }];
 }
 
 - (void)focusGesture:(id)sender {
