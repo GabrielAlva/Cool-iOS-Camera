@@ -130,6 +130,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		649D034C1A9CCE59008C7532 /* CustomizableCamera */ = {
+			isa = PBXGroup;
+			children = (
+				649D034D1A9CCE9C008C7532 /* View Controller */,
+				64C983471A6F240700462D95 /* Model Classes */,
+				64C983491A6F242E00462D95 /* Graphical Assets */,
+			);
+			name = CustomizableCamera;
+			sourceTree = "<group>";
+		};
+		649D034D1A9CCE9C008C7532 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1B472D871A729EB000C85DAB /* CameraSessionView.h */,
+				1B472D881A729EB000C85DAB /* CameraSessionView.m */,
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
 		64ABD10118FF19E000B2E420 = {
 			isa = PBXGroup;
 			children = (
@@ -168,9 +187,8 @@
 		64ABD11318FF19E000B2E420 /* CameraWithAVFoundation */ = {
 			isa = PBXGroup;
 			children = (
-				64C983491A6F242E00462D95 /* Graphical Assets */,
+				649D034C1A9CCE59008C7532 /* CustomizableCamera */,
 				64C983481A6F241A00462D95 /* StoryBoard */,
-				64C983471A6F240700462D95 /* Model Classes */,
 				64C983461A6F23EF00462D95 /* View Controllers */,
 				64ABD12818FF19E000B2E420 /* Images.xcassets */,
 				64ABD11418FF19E000B2E420 /* Supporting Files */,
@@ -214,8 +232,6 @@
 			children = (
 				64ABD12518FF19E000B2E420 /* CameraViewController.h */,
 				64ABD12618FF19E000B2E420 /* CameraViewController.m */,
-				1B472D871A729EB000C85DAB /* CameraSessionView.h */,
-				1B472D881A729EB000C85DAB /* CameraSessionView.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
