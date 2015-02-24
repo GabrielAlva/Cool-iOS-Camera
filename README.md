@@ -1,4 +1,4 @@
-![Custom Camera.](https://raw.githubusercontent.com/GabrielAlva/Cool-iOS-Camera/master/MarkdownImage.png?token=ABnwGTpikryrLTOnECN2dBdlo51b0irbks5U9P_GwA%3D%3D)
+![Custom Camera.](https://raw.githubusercontent.com/GabrielAlva/Cool-iOS-Camera/master/MarkdownImage.png)
 <br />
 <br />
 <br />
@@ -7,7 +7,8 @@
 - Extremely simple and easy to use
 - Customizable interface
 - Code-made UI assets that do not loose resolution quality & resize dynamically depending on the screen size of the device.
-- Overlays over any presented view controllers or views
+- Added animations to the UI elements for a more intuitive and responsive feel.
+- Overlays over any presented view controller or view
 - Made for iPhone & iPad
 - Built for iOS 8
 
