@@ -1,4 +1,4 @@
-![Custom Camera.](https://raw.githubusercontent.com/GabrielAlva/Cool-iOS-Camera/NewDesign/MarkdownImage.png)
+![Custom Camera.](https://raw.githubusercontent.com/GabrielAlva/Cool-iOS-Camera/master/MarkdownImage.png?token=ABnwGTpikryrLTOnECN2dBdlo51b0irbks5U9P_GwA%3D%3D)
 <br />
 <br />
 <br />
