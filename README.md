@@ -1,3 +1,7 @@
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Platform](https://img.shields.io/badge/platform-iOS-yellow.svg)
+![Level](https://img.shields.io/badge/level-over%209000-1CCDD6.svg)
+
 ![Custom Camera.](https://raw.githubusercontent.com/GabrielAlva/Cool-iOS-Camera/master/MarkdownImage.png)
 <br />
 <br />
@@ -30,7 +34,7 @@ Next, declare a CameraSessionView property:
 @property (nonatomic, strong) CameraSessionView *cameraView;
 ```
 
-Now in the place where you would like to invoke the camera view (on the action of a button or viewDidLoad) instantiate it, set it's delegate and added as a subview:
+Now in the place where you would like to invoke the camera view (on the action of a button or viewDidLoad) instantiate it, set it's delegate and add it as a subview:
 ```
 _cameraView = [[CameraSessionView alloc] initWithFrame:self.view.frame];
 _cameraView.delegate = self;
@@ -76,9 +80,15 @@ To hide the dismiss button:
 ```
 [_cameraView hideDismissButton];
 ```
+If no customization is made, the camera view will use its default look.
+
 ##Example
 
 You can find a full example on usage and customization on the Xcode project attached to this repository.
+
+##Contributor
+
+* Christopher Cohen
 
 ## License
 
