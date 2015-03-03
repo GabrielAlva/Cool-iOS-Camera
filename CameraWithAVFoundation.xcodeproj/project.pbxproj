@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1B472D891A729EB000C85DAB /* CameraSessionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B472D881A729EB000C85DAB /* CameraSessionView.m */; };
 		1BA105E11A7A9CE1000B1A36 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA105E01A7A9CE1000B1A36 /* Constants.m */; };
+		23AFD7AD1AA58ED000580876 /* Cool Camera Mockup.sketch in Resources */ = {isa = PBXBuildFile; fileRef = 23AFD7AB1AA58ED000580876 /* Cool Camera Mockup.sketch */; };
+		23AFD7AE1AA58ED000580876 /* PaintCodeFile.pcvd in Resources */ = {isa = PBXBuildFile; fileRef = 23AFD7AC1AA58ED000580876 /* PaintCodeFile.pcvd */; };
 		64ABCCD01A950B8900FE8473 /* LaunchCameraButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ABCCCF1A950B8900FE8473 /* LaunchCameraButton.m */; };
 		64ABD10E18FF19E000B2E420 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD10D18FF19E000B2E420 /* Foundation.framework */; };
 		64ABD11018FF19E000B2E420 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD10F18FF19E000B2E420 /* CoreGraphics.framework */; };
@@ -31,8 +33,6 @@
 		64ABD14E18FF215A00B2E420 /* CaptureSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ABD14D18FF215A00B2E420 /* CaptureSessionManager.m */; };
 		64ABD15018FF24DF00B2E420 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD14F18FF24DF00B2E420 /* QuartzCore.framework */; };
 		64ABD15218FF24E500B2E420 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD15118FF24E400B2E420 /* AVFoundation.framework */; };
-		64C9834B1A6F244500462D95 /* Cool Camera Mockup.sketch in Resources */ = {isa = PBXBuildFile; fileRef = 64C9834A1A6F244500462D95 /* Cool Camera Mockup.sketch */; };
-		64C9834D1A6F251100462D95 /* PaintCodeFile.pcvd in Resources */ = {isa = PBXBuildFile; fileRef = 64C9834C1A6F251100462D95 /* PaintCodeFile.pcvd */; };
 		64D101CE1A74351600316FAA /* CameraStyleKitClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101CD1A74351600316FAA /* CameraStyleKitClass.m */; };
 		64D101D11A7437D300316FAA /* CameraShutterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101D01A7437D300316FAA /* CameraShutterButton.m */; };
 		64D101D51A7439B900316FAA /* CameraFlashButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101D41A7439B900316FAA /* CameraFlashButton.m */; };
@@ -56,6 +56,8 @@
 		1B472D881A729EB000C85DAB /* CameraSessionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraSessionView.m; sourceTree = "<group>"; };
 		1BA105E01A7A9CE1000B1A36 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		1BDD39D11A745E6700A200BA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		23AFD7AB1AA58ED000580876 /* Cool Camera Mockup.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cool Camera Mockup.sketch"; sourceTree = "<group>"; };
+		23AFD7AC1AA58ED000580876 /* PaintCodeFile.pcvd */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = PaintCodeFile.pcvd; sourceTree = "<group>"; };
 		64ABCCCE1A950B8900FE8473 /* LaunchCameraButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchCameraButton.h; sourceTree = "<group>"; };
 		64ABCCCF1A950B8900FE8473 /* LaunchCameraButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchCameraButton.m; sourceTree = "<group>"; };
 		64ABD10A18FF19E000B2E420 /* CameraWithAVFoundation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraWithAVFoundation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,8 +87,6 @@
 		64ABD14D18FF215A00B2E420 /* CaptureSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureSessionManager.m; sourceTree = "<group>"; };
 		64ABD14F18FF24DF00B2E420 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		64ABD15118FF24E400B2E420 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		64C9834A1A6F244500462D95 /* Cool Camera Mockup.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cool Camera Mockup.sketch"; sourceTree = "<group>"; };
-		64C9834C1A6F251100462D95 /* PaintCodeFile.pcvd */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = PaintCodeFile.pcvd; sourceTree = "<group>"; };
 		64D101CC1A74351600316FAA /* CameraStyleKitClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraStyleKitClass.h; sourceTree = "<group>"; };
 		64D101CD1A74351600316FAA /* CameraStyleKitClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraStyleKitClass.m; sourceTree = "<group>"; };
 		64D101CF1A7437D300316FAA /* CameraShutterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraShutterButton.h; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 				64C983471A6F240700462D95 /* Model Classes */,
 				64C983491A6F242E00462D95 /* Graphical Assets */,
 			);
-			name = CustomizableCamera;
+			path = CustomizableCamera;
 			sourceTree = "<group>";
 		};
 		649D034D1A9CCE9C008C7532 /* Camera View */ = {
@@ -146,7 +146,7 @@
 				1B472D871A729EB000C85DAB /* CameraSessionView.h */,
 				1B472D881A729EB000C85DAB /* CameraSessionView.m */,
 			);
-			name = "Camera View";
+			path = "Camera View";
 			sourceTree = "<group>";
 		};
 		64ABD10118FF19E000B2E420 = {
@@ -244,7 +244,7 @@
 				64ABD14C18FF215A00B2E420 /* CaptureSessionManager.h */,
 				64ABD14D18FF215A00B2E420 /* CaptureSessionManager.m */,
 			);
-			name = "Model Classes";
+			path = "Model Classes";
 			sourceTree = "<group>";
 		};
 		64C983481A6F241A00462D95 /* StoryBoard */ = {
@@ -259,12 +259,12 @@
 		64C983491A6F242E00462D95 /* Graphical Assets */ = {
 			isa = PBXGroup;
 			children = (
+				23AFD7AB1AA58ED000580876 /* Cool Camera Mockup.sketch */,
+				23AFD7AC1AA58ED000580876 /* PaintCodeFile.pcvd */,
 				64D101D21A7437E000316FAA /* CameraViewComponents */,
 				64D101CB1A742EEC00316FAA /* UI Assets */,
-				64C9834C1A6F251100462D95 /* PaintCodeFile.pcvd */,
-				64C9834A1A6F244500462D95 /* Cool Camera Mockup.sketch */,
 			);
-			name = "Graphical Assets";
+			path = "Graphical Assets";
 			sourceTree = "<group>";
 		};
 		64D101CB1A742EEC00316FAA /* UI Assets */ = {
@@ -273,7 +273,7 @@
 				64D101CC1A74351600316FAA /* CameraStyleKitClass.h */,
 				64D101CD1A74351600316FAA /* CameraStyleKitClass.m */,
 			);
-			name = "UI Assets";
+			path = "UI Assets";
 			sourceTree = "<group>";
 		};
 		64D101D21A7437E000316FAA /* CameraViewComponents */ = {
@@ -292,7 +292,7 @@
 				64ABCCCE1A950B8900FE8473 /* LaunchCameraButton.h */,
 				64ABCCCF1A950B8900FE8473 /* LaunchCameraButton.m */,
 			);
-			name = CameraViewComponents;
+			path = CameraViewComponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,11 +372,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64C9834D1A6F251100462D95 /* PaintCodeFile.pcvd in Resources */,
+				23AFD7AE1AA58ED000580876 /* PaintCodeFile.pcvd in Resources */,
 				64ABD12418FF19E000B2E420 /* Main_iPad.storyboard in Resources */,
 				64ABD12918FF19E000B2E420 /* Images.xcassets in Resources */,
 				64ABD12118FF19E000B2E420 /* Main_iPhone.storyboard in Resources */,
-				64C9834B1A6F244500462D95 /* Cool Camera Mockup.sketch in Resources */,
+				23AFD7AD1AA58ED000580876 /* Cool Camera Mockup.sketch in Resources */,
 				64ABD11818FF19E000B2E420 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
