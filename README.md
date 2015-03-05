@@ -10,7 +10,7 @@
 ## Features
 - Extremely simple and easy to use
 - Customizable interface
-- Code-made UI assets that do not loose resolution quality & resize dynamically depending on the screen size of the device.
+- Coded UI assets which do not loose resolution quality.  Able to resize dynamically depending on the screen size of the device.
 - Added animations to the UI elements for a more intuitive and responsive feel.
 - Overlays over any presented view controller or view
 - Made for iPhone & iPad
@@ -41,7 +41,7 @@ _cameraView.delegate = self;
 [self.view addSubview:_cameraView];
 ```
 
-Now implement **one** of this two delegate functions depending on weather you would like to get back a `UIImage` or `NSData` for an image when the shutter on the camera is pressed,
+Now implement **one** of these two delegate functions depending on whether you would like to get back a `UIImage` or `NSData` for an image when the shutter on the camera is tapped,
 
 For a UIImage:
 ```objective-c
@@ -62,7 +62,7 @@ You can hide the camera view either by pressing the dismiss button on it or by w
 
 ##Customization
 
-Once you have your `CameraSessionView` instance you can customize the appearance of the camera using its api, below are some samples:
+Once you have your `CameraSessionView` instance you can customize the appearance of the camera using its API, below are some samples:
 
 To change the color of the top bar including its transparency:
 ```objective-c
