@@ -18,7 +18,7 @@
 
 ## Installation
 * Include the `AVFoundation.Framework` library in your project, click on your project's target, navigate to Build Phases, then go to Link Binary With Libraries, click on the + and add the AVFoundation.Framework.
-* Drag the `CustomizableCamera` folder found on the demo app into your project.
+* Browse to the directory of the demo app and drag the `CustomizableCamera` folder into your Xcode project.
 * import `"CameraSessionView.h"` to the view controller that will invoke the camera.
 
 ## Usage 
