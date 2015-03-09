@@ -60,6 +60,19 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        _animationInProgress = NO;
+        [self setupCaptureManager:RearFacingCamera];
+        cameraBeingUsed = RearFacingCamera;
+        [self composeInterface];
+        
+        [[_captureManager captureSession] startRunning];
+    }
+    return self;
+}
+
 #pragma mark - Setup
 
 -(void)setupCaptureManager:(CameraType)camera {
