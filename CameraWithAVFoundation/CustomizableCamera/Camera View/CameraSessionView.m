@@ -77,12 +77,17 @@
 
 -(void)setupCaptureManager:(CameraType)camera {
     
-    //If previous intance of a 'CaptureSessionManager' object exists, remove it's preview layer
-    if (_captureManager) [_captureManager.previewLayer removeFromSuperlayer];
+    // remove existing input
+    AVCaptureInput* currentCameraInput = [self.captureManager.captureSession.inputs objectAtIndex:0];
+    [self.captureManager.captureSession removeInput:currentCameraInput];
+    
     _captureManager = nil;
     
     //Create and configure 'CaptureSessionManager' object
     _captureManager = [CaptureSessionManager new];
+    
+    // indicate that some changes will be made to the session
+    [self.captureManager.captureSession beginConfiguration];
     
     if (_captureManager) {
         
@@ -91,6 +96,7 @@
         [_captureManager initiateCaptureSessionForCamera:camera];
         [_captureManager addStillImageOutput];
         [_captureManager addVideoPreviewLayer];
+        [self.captureManager.captureSession commitConfiguration];
         
         //Preview Layer setup
         CGRect layerRect = self.layer.bounds;
