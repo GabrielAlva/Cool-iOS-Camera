@@ -103,6 +103,13 @@
         [_captureManager.previewLayer setBounds:layerRect];
         [_captureManager.previewLayer setPosition:CGPointMake(CGRectGetMidX(layerRect),CGRectGetMidY(layerRect))];
         
+        //Apply animation effect to the camera's preview layer
+        CATransition *applicationLoadViewIn =[CATransition animation];
+        [applicationLoadViewIn setDuration:0.6];
+        [applicationLoadViewIn setType:kCATransitionReveal];
+        [applicationLoadViewIn setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+        [_captureManager.previewLayer addAnimation:applicationLoadViewIn forKey:kCATransitionReveal];
+        
         //Add to self.view's layer
         [self.layer addSublayer:_captureManager.previewLayer];
     }
