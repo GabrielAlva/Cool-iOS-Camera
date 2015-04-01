@@ -126,14 +126,14 @@
     {
         //Declare the sizing of the UI elements for iPad
         shutterButtonSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width * 0.1, [[UIScreen mainScreen] bounds].size.width * 0.1);
-        topBarSize        = CGSizeMake([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height * 0.0795);
-        barButtonItemSize = CGSizeMake([[UIScreen mainScreen] bounds].size.height * 0.06, [[UIScreen mainScreen] bounds].size.height * 0.0439);
+        topBarSize        = CGSizeMake([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height * 0.06);
+        barButtonItemSize = CGSizeMake([[UIScreen mainScreen] bounds].size.height * 0.04, [[UIScreen mainScreen] bounds].size.height * 0.04);
     } else
     {
         //Declare the sizing of the UI elements for iPhone
         shutterButtonSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width * 0.21, [[UIScreen mainScreen] bounds].size.width * 0.21);
-        topBarSize        = CGSizeMake([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height * 0.1);
-        barButtonItemSize = CGSizeMake([[UIScreen mainScreen] bounds].size.height * 0.06, [[UIScreen mainScreen] bounds].size.height * 0.06);
+        topBarSize        = CGSizeMake([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height * 0.07);
+        barButtonItemSize = CGSizeMake([[UIScreen mainScreen] bounds].size.height * 0.05, [[UIScreen mainScreen] bounds].size.height * 0.05);
     }
     
     
