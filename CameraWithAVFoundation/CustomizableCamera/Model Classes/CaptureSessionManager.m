@@ -102,10 +102,14 @@
              
              if (self.delegate)
                  [self.delegate cameraSessionManagerDidCaptureImage];
-             
          }];
-        
     }
+    
+    //Turn off the flash if on
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    [device lockForConfiguration:nil];
+    [device setTorchMode:AVCaptureTorchModeOff];
+    [device unlockForConfiguration];
 }
 
 - (void)setEnableTorch:(BOOL)enableTorch
