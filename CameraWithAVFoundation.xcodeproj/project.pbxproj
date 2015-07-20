@@ -22,11 +22,6 @@
 		64ABD12418FF19E000B2E420 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64ABD12218FF19E000B2E420 /* Main_iPad.storyboard */; };
 		64ABD12718FF19E000B2E420 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ABD12618FF19E000B2E420 /* CameraViewController.m */; };
 		64ABD12918FF19E000B2E420 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64ABD12818FF19E000B2E420 /* Images.xcassets */; };
-		64ABD13018FF19E000B2E420 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD12F18FF19E000B2E420 /* XCTest.framework */; };
-		64ABD13118FF19E000B2E420 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD10D18FF19E000B2E420 /* Foundation.framework */; };
-		64ABD13218FF19E000B2E420 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD11118FF19E000B2E420 /* UIKit.framework */; };
-		64ABD13A18FF19E000B2E420 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64ABD13818FF19E000B2E420 /* InfoPlist.strings */; };
-		64ABD13C18FF19E000B2E420 /* CameraWithAVFoundationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ABD13B18FF19E000B2E420 /* CameraWithAVFoundationTests.m */; };
 		64ABD14618FF1AF200B2E420 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD14518FF1AF200B2E420 /* ImageIO.framework */; };
 		64ABD14818FF1AF900B2E420 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD14718FF1AF900B2E420 /* CoreMedia.framework */; };
 		64ABD14A18FF1B0300B2E420 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ABD14918FF1B0300B2E420 /* CoreVideo.framework */; };
@@ -40,16 +35,6 @@
 		64D101DB1A7439D100316FAA /* CameraDismissButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101DA1A7439D100316FAA /* CameraDismissButton.m */; };
 		64D101E11A75EA8A00316FAA /* CameraFocalReticule.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101E01A75EA8A00316FAA /* CameraFocalReticule.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		64ABD13318FF19E000B2E420 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64ABD10218FF19E000B2E420 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 64ABD10918FF19E000B2E420;
-			remoteInfo = CameraWithAVFoundation;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1B472D871A729EB000C85DAB /* CameraSessionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSessionView.h; sourceTree = "<group>"; };
@@ -75,7 +60,6 @@
 		64ABD12518FF19E000B2E420 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		64ABD12618FF19E000B2E420 /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		64ABD12818FF19E000B2E420 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		64ABD12E18FF19E000B2E420 /* CameraWithAVFoundationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CameraWithAVFoundationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64ABD12F18FF19E000B2E420 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		64ABD13718FF19E000B2E420 /* CameraWithAVFoundationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CameraWithAVFoundationTests-Info.plist"; sourceTree = "<group>"; };
 		64ABD13918FF19E000B2E420 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -117,16 +101,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		64ABD12B18FF19E000B2E420 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64ABD13018FF19E000B2E420 /* XCTest.framework in Frameworks */,
-				64ABD13218FF19E000B2E420 /* UIKit.framework in Frameworks */,
-				64ABD13118FF19E000B2E420 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -163,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				64ABD10A18FF19E000B2E420 /* CameraWithAVFoundation.app */,
-				64ABD12E18FF19E000B2E420 /* CameraWithAVFoundationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -315,24 +288,6 @@
 			productReference = 64ABD10A18FF19E000B2E420 /* CameraWithAVFoundation.app */;
 			productType = "com.apple.product-type.application";
 		};
-		64ABD12D18FF19E000B2E420 /* CameraWithAVFoundationTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 64ABD14218FF19E000B2E420 /* Build configuration list for PBXNativeTarget "CameraWithAVFoundationTests" */;
-			buildPhases = (
-				64ABD12A18FF19E000B2E420 /* Sources */,
-				64ABD12B18FF19E000B2E420 /* Frameworks */,
-				64ABD12C18FF19E000B2E420 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				64ABD13418FF19E000B2E420 /* PBXTargetDependency */,
-			);
-			name = CameraWithAVFoundationTests;
-			productName = CameraWithAVFoundationTests;
-			productReference = 64ABD12E18FF19E000B2E420 /* CameraWithAVFoundationTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -342,14 +297,6 @@
 				CLASSPREFIX = Camera;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Gabriel Alvarado";
-				TargetAttributes = {
-					64ABD10918FF19E000B2E420 = {
-						DevelopmentTeam = D7DEEAATLH;
-					};
-					64ABD12D18FF19E000B2E420 = {
-						TestTargetID = 64ABD10918FF19E000B2E420;
-					};
-				};
 			};
 			buildConfigurationList = 64ABD10518FF19E000B2E420 /* Build configuration list for PBXProject "CameraWithAVFoundation" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -365,7 +312,6 @@
 			projectRoot = "";
 			targets = (
 				64ABD10918FF19E000B2E420 /* CameraWithAVFoundation */,
-				64ABD12D18FF19E000B2E420 /* CameraWithAVFoundationTests */,
 			);
 		};
 /* End PBXProject section */
@@ -381,14 +327,6 @@
 				64ABD12118FF19E000B2E420 /* Main_iPhone.storyboard in Resources */,
 				23AFD7AD1AA58ED000580876 /* Cool Camera Mockup.sketch in Resources */,
 				64ABD11818FF19E000B2E420 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64ABD12C18FF19E000B2E420 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64ABD13A18FF19E000B2E420 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,23 +353,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		64ABD12A18FF19E000B2E420 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64ABD13C18FF19E000B2E420 /* CameraWithAVFoundationTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		64ABD13418FF19E000B2E420 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 64ABD10918FF19E000B2E420 /* CameraWithAVFoundation */;
-			targetProxy = 64ABD13318FF19E000B2E420 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		64ABD11618FF19E000B2E420 /* InfoPlist.strings */ = {
@@ -575,46 +497,6 @@
 			};
 			name = Release;
 		};
-		64ABD14318FF19E000B2E420 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CameraWithAVFoundation.app/CameraWithAVFoundation";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CameraWithAVFoundation/CameraWithAVFoundation-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "CameraWithAVFoundationTests/CameraWithAVFoundationTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		64ABD14418FF19E000B2E420 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CameraWithAVFoundation.app/CameraWithAVFoundation";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CameraWithAVFoundation/CameraWithAVFoundation-Prefix.pch";
-				INFOPLIST_FILE = "CameraWithAVFoundationTests/CameraWithAVFoundationTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -632,15 +514,6 @@
 			buildConfigurations = (
 				64ABD14018FF19E000B2E420 /* Debug */,
 				64ABD14118FF19E000B2E420 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		64ABD14218FF19E000B2E420 /* Build configuration list for PBXNativeTarget "CameraWithAVFoundationTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				64ABD14318FF19E000B2E420 /* Debug */,
-				64ABD14418FF19E000B2E420 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
