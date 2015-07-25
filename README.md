@@ -9,6 +9,7 @@
 
 ## Features
 - Extremely simple and easy to use
+- Controls autofocus & exposure
 - Customizable interface
 - Code-made UI assets that do not loose resolution quality & resize dynamically depending on the screen size of the device.
 - Added animations to the UI elements for a more intuitive and responsive feel.
