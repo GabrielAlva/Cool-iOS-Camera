@@ -46,7 +46,7 @@
     //Report camera device availability
     if (self.delegate) [self.delegate cameraSessionManagerDidReportAvailability:deviceAvailability forCameraType:cameraType];
     
-    [self initiateStatisticsReportWithInterval:.125];
+//    [self initiateStatisticsReportWithInterval:.125];
 }
 
 -(void)initiateStatisticsReportWithInterval:(CGFloat)interval {
@@ -179,6 +179,8 @@
 // stop the camera, otherwise it will lead to memory crashes
 - (void)stop
 {
+    [self.captureSession stopRunning];
+    
     if(self.captureSession.inputs.count > 0) {
         AVCaptureInput* input = [self.captureSession.inputs objectAtIndex:0];
         [self.captureSession removeInput:input];
@@ -188,7 +190,6 @@
         [self.captureSession removeOutput:output];
     }
     
-    [self.captureSession stopRunning];
 }
 
 - (void)dealloc {
