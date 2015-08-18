@@ -47,8 +47,7 @@
 
 @implementation CameraSessionView
 
--(instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
+-(void)drawRect:(CGRect)rect {
     if (self) {
         _animationInProgress = NO;
         [self setupCaptureManager:RearFacingCamera];
@@ -57,19 +56,15 @@
         
         [[_captureManager captureSession] startRunning];
     }
+}
+
+-(instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
-    if (self) {
-        _animationInProgress = NO;
-        [self setupCaptureManager:RearFacingCamera];
-        cameraBeingUsed = RearFacingCamera;
-        [self composeInterface];
-        
-        [[_captureManager captureSession] startRunning];
-    }
     return self;
 }
 
@@ -125,14 +120,14 @@
     if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
     {
         //Declare the sizing of the UI elements for iPad
-        shutterButtonSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width * 0.1, [[UIScreen mainScreen] bounds].size.width * 0.1);
-        topBarSize        = CGSizeMake([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height * 0.06);
+        shutterButtonSize = CGSizeMake(self.bounds.size.width * 0.1, self.bounds.size.width * 0.1);
+        topBarSize        = CGSizeMake(self.frame.size.width, self.frame.size.height * 0.06);
         barButtonItemSize = CGSizeMake([[UIScreen mainScreen] bounds].size.height * 0.04, [[UIScreen mainScreen] bounds].size.height * 0.04);
     } else
     {
         //Declare the sizing of the UI elements for iPhone
-        shutterButtonSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width * 0.21, [[UIScreen mainScreen] bounds].size.width * 0.21);
-        topBarSize        = CGSizeMake([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height * 0.07);
+        shutterButtonSize = CGSizeMake(self.bounds.size.width * 0.21, self.bounds.size.width * 0.21);
+        topBarSize        = CGSizeMake(self.frame.size.width, [[UIScreen mainScreen] bounds].size.height * 0.07);
         barButtonItemSize = CGSizeMake([[UIScreen mainScreen] bounds].size.height * 0.05, [[UIScreen mainScreen] bounds].size.height * 0.05);
     }
     
@@ -144,7 +139,7 @@
         
         //Button Visual attribution
         _cameraShutter.frame = (CGRect){0,0, shutterButtonSize};
-        _cameraShutter.center = CGPointMake(self.center.x, self.center.y*1.75);
+        _cameraShutter.center = CGPointMake(self.frame.size.width/2, self.frame.size.height*0.875);
         _cameraShutter.tag = ShutterButtonTag;
         _cameraShutter.backgroundColor = [UIColor clearColor];
         
