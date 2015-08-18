@@ -2,7 +2,7 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Level](https://img.shields.io/badge/level-over%209000-1CCDD6.svg)
 
-![Custom Camera.](https://raw.githubusercontent.com/GabrielAlva/Cool-iOS-Camera/master/MarkdownImage.png)
+![Custom Camera.](https://github.com/GabrielAlva/Cool-iOS-Camera/blob/master/Resources/MarkdownImage.png)
 <br />
 <br />
 <br />
