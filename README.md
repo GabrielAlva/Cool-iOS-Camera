@@ -15,7 +15,6 @@
 - Added animations to the UI elements for a more intuitive and responsive feel.
 - Overlays over any presented view controller or view
 - Made for iPhone & iPad
-- Built for iOS 8
 
 ## Installation
 * Include the `AVFoundation.Framework` library in your project, click on your project's target, navigate to Build Phases, then go to Link Binary With Libraries, click on the + and add the AVFoundation.Framework.
