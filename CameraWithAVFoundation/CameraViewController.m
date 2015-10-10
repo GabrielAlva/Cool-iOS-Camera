@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    NSLog(@"Height: %f, Width: %f", self.view.frame.size.height, self.view.frame.size.width);
     
 }
 

@@ -34,6 +34,7 @@
 		64D101D81A7439C400316FAA /* CameraToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101D71A7439C400316FAA /* CameraToggleButton.m */; };
 		64D101DB1A7439D100316FAA /* CameraDismissButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101DA1A7439D100316FAA /* CameraDismissButton.m */; };
 		64D101E11A75EA8A00316FAA /* CameraFocalReticule.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101E01A75EA8A00316FAA /* CameraFocalReticule.m */; };
+		64ED4A401BC9A11300C9CF4C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64ED4A3F1BC9A11300C9CF4C /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		64D101DA1A7439D100316FAA /* CameraDismissButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraDismissButton.m; sourceTree = "<group>"; };
 		64D101DF1A75EA8A00316FAA /* CameraFocalReticule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFocalReticule.h; sourceTree = "<group>"; };
 		64D101E01A75EA8A00316FAA /* CameraFocalReticule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraFocalReticule.m; sourceTree = "<group>"; };
+		64ED4A3F1BC9A11300C9CF4C /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 			children = (
 				64ABD11F18FF19E000B2E420 /* Main_iPhone.storyboard */,
 				64ABD12218FF19E000B2E420 /* Main_iPad.storyboard */,
+				64ED4A3F1BC9A11300C9CF4C /* Launch Screen.storyboard */,
 			);
 			name = StoryBoard;
 			sourceTree = "<group>";
@@ -295,7 +298,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Camera;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Gabriel Alvarado";
 			};
 			buildConfigurationList = 64ABD10518FF19E000B2E420 /* Build configuration list for PBXProject "CameraWithAVFoundation" */;
@@ -327,6 +330,7 @@
 				64ABD12118FF19E000B2E420 /* Main_iPhone.storyboard in Resources */,
 				23AFD7AD1AA58ED000580876 /* Cool Camera Mockup.sketch in Resources */,
 				64ABD11818FF19E000B2E420 /* InfoPlist.strings in Resources */,
+				64ED4A401BC9A11300C9CF4C /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +413,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -474,6 +479,7 @@
 				GCC_PREFIX_HEADER = "CameraWithAVFoundation/CameraWithAVFoundation-Prefix.pch";
 				INFOPLIST_FILE = "CameraWithAVFoundation/CameraWithAVFoundation-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Gabriel-Alvarado.camera";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -491,6 +497,7 @@
 				GCC_PREFIX_HEADER = "CameraWithAVFoundation/CameraWithAVFoundation-Prefix.pch";
 				INFOPLIST_FILE = "CameraWithAVFoundation/CameraWithAVFoundation-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Gabriel-Alvarado.camera";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
