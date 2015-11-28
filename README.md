@@ -41,7 +41,7 @@ _cameraView.delegate = self;
 [self.view addSubview:_cameraView];
 ```
 
-Now implement **one** of this two delegate functions depending on weather you would like to get back a `UIImage` or `NSData` for an image when the shutter on the camera is pressed,
+Now implement **one** of this two delegate functions depending on whether you would like to get back a `UIImage` or `NSData` for an image when the shutter on the camera is pressed,
 
 For a UIImage:
 ```objective-c
