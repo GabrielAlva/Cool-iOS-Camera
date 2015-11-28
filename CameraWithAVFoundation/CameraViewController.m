@@ -46,7 +46,7 @@
     //____________________________Example Customization____________________________
     //[_cameraView setTopBarColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha: 0.64]];
     //[_cameraView hideFlashButton]; //On iPad flash is not present, hence it wont appear.
-    //[_cameraView hideCameraToogleButton];
+    //[_cameraView hideCameraToggleButton];
     //[_cameraView hideDismissButton];
 }
 

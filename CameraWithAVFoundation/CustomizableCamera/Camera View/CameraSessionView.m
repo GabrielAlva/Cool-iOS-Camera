@@ -466,7 +466,7 @@
     _cameraFlash.hidden = YES;
 }
 
-- (void)hideCameraToogleButton
+- (void)hideCameraToggleButton
 {
     _cameraToggle.hidden = YES;
 }

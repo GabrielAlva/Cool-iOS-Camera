@@ -23,7 +23,7 @@
 //API Functions
 - (void)setTopBarColor:(UIColor *)topBarColor;
 - (void)hideFlashButton;
-- (void)hideCameraToogleButton;
+- (void)hideCameraToggleButton;
 - (void)hideDismissButton;
 
 @end
