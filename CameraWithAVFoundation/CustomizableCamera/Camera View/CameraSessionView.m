@@ -135,7 +135,7 @@
     //Create shutter button
     _cameraShutter = [CameraShutterButton new];
     
-    if (_captureManager) {
+    if (_cameraShutter) {
         
         //Button Visual attribution
         _cameraShutter.frame = (CGRect){0,0, shutterButtonSize};
