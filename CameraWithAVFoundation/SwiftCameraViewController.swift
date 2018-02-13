@@ -10,6 +10,10 @@ import UIKit
 
 class SwiftCameraViewController: UIViewController {
 
+  override var prefersStatusBarHidden: Bool {
+    return true
+  }
+
   var cameraView: CameraSessionView!
 
   override func viewDidLoad() {
@@ -40,10 +44,6 @@ class SwiftCameraViewController: UIViewController {
     // cameraView.hideFlashButton() //On iPad flash is not present, hence it wont appear.
     // cameraView.hideCameraToggleButton()
     // cameraView.hideDismissButton()
-  }
-
-  func prefersStatusBarHidden() -> Bool {
-    return true
   }
 
 }
