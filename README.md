@@ -60,7 +60,7 @@ For NSData:
 
 You can hide the camera view either by pressing the dismiss button on it or by writing `[self.cameraView removeFromSuperview];` on the invoking view controller (it can be written inside one of the two delegate functions in order to dismiss it after taking a photo). 
 
-##Customization
+## Customization
 
 Once you have your `CameraSessionView` instance you can customize the appearance of the camera using its api, below are some samples:
 
@@ -82,11 +82,11 @@ To hide the dismiss button:
 ```
 If no customization is made, the camera view will use its default look.
 
-##Example
+## Example
 
 You can find a full example on usage and customization on the Xcode project attached to this repository.
 
-##Contributor
+## Contributor
 
 * Christopher Cohen
 
