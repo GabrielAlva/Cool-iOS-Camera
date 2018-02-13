@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B472D891A729EB000C85DAB /* CameraSessionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B472D881A729EB000C85DAB /* CameraSessionView.m */; };
 		1BA105E11A7A9CE1000B1A36 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA105E01A7A9CE1000B1A36 /* Constants.m */; };
+		1F9730F2202F8756002B3AC9 /* SwiftCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9730F1202F8756002B3AC9 /* SwiftCameraViewController.swift */; };
 		23AFD7AD1AA58ED000580876 /* Cool Camera Mockup.sketch in Resources */ = {isa = PBXBuildFile; fileRef = 23AFD7AB1AA58ED000580876 /* Cool Camera Mockup.sketch */; };
 		23AFD7AE1AA58ED000580876 /* PaintCodeFile.pcvd in Resources */ = {isa = PBXBuildFile; fileRef = 23AFD7AC1AA58ED000580876 /* PaintCodeFile.pcvd */; };
 		64ABCCD01A950B8900FE8473 /* LaunchCameraButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ABCCCF1A950B8900FE8473 /* LaunchCameraButton.m */; };
@@ -34,7 +35,7 @@
 		64D101D81A7439C400316FAA /* CameraToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101D71A7439C400316FAA /* CameraToggleButton.m */; };
 		64D101DB1A7439D100316FAA /* CameraDismissButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101DA1A7439D100316FAA /* CameraDismissButton.m */; };
 		64D101E11A75EA8A00316FAA /* CameraFocalReticule.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101E01A75EA8A00316FAA /* CameraFocalReticule.m */; };
-		64ED4A401BC9A11300C9CF4C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64ED4A3F1BC9A11300C9CF4C /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		64ED4A401BC9A11300C9CF4C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64ED4A3F1BC9A11300C9CF4C /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,8 @@
 		1B472D881A729EB000C85DAB /* CameraSessionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraSessionView.m; sourceTree = "<group>"; };
 		1BA105E01A7A9CE1000B1A36 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		1BDD39D11A745E6700A200BA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		1F9730F0202F8756002B3AC9 /* CameraWithAVFoundation-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CameraWithAVFoundation-Bridging-Header.h"; sourceTree = "<group>"; };
+		1F9730F1202F8756002B3AC9 /* SwiftCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCameraViewController.swift; sourceTree = "<group>"; };
 		23AFD7AB1AA58ED000580876 /* Cool Camera Mockup.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cool Camera Mockup.sketch"; sourceTree = "<group>"; };
 		23AFD7AC1AA58ED000580876 /* PaintCodeFile.pcvd */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = PaintCodeFile.pcvd; sourceTree = "<group>"; };
 		64ABCCCE1A950B8900FE8473 /* LaunchCameraButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchCameraButton.h; sourceTree = "<group>"; };
@@ -106,6 +109,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F9730EF202F871D002B3AC9 /* Swift View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1F9730F1202F8756002B3AC9 /* SwiftCameraViewController.swift */,
+				1F9730F0202F8756002B3AC9 /* CameraWithAVFoundation-Bridging-Header.h */,
+			);
+			name = "Swift View Controllers";
+			sourceTree = "<group>";
+		};
 		649D034C1A9CCE59008C7532 /* CustomizableCamera */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +177,7 @@
 				649D034C1A9CCE59008C7532 /* CustomizableCamera */,
 				64C983481A6F241A00462D95 /* StoryBoard */,
 				64C983461A6F23EF00462D95 /* View Controllers */,
+				1F9730EF202F871D002B3AC9 /* Swift View Controllers */,
 				64ABD12818FF19E000B2E420 /* Images.xcassets */,
 				64ABD11418FF19E000B2E420 /* Supporting Files */,
 			);
@@ -350,6 +363,7 @@
 				64ABD11A18FF19E000B2E420 /* main.m in Sources */,
 				64D101D11A7437D300316FAA /* CameraShutterButton.m in Sources */,
 				64D101D81A7439C400316FAA /* CameraToggleButton.m in Sources */,
+				1F9730F2202F8756002B3AC9 /* SwiftCameraViewController.swift in Sources */,
 				64D101CE1A74351600316FAA /* CameraStyleKitClass.m in Sources */,
 				64ABD11E18FF19E000B2E420 /* CameraAppDelegate.m in Sources */,
 				64D101E11A75EA8A00316FAA /* CameraFocalReticule.m in Sources */,
@@ -473,15 +487,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CameraWithAVFoundation/CameraWithAVFoundation-Prefix.pch";
 				INFOPLIST_FILE = "CameraWithAVFoundation/CameraWithAVFoundation-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Gabriel-Alvarado.camera";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CameraWithAVFoundation/CameraWithAVFoundation-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -491,15 +510,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CameraWithAVFoundation/CameraWithAVFoundation-Prefix.pch";
 				INFOPLIST_FILE = "CameraWithAVFoundation/CameraWithAVFoundation-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Gabriel-Alvarado.camera";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CameraWithAVFoundation/CameraWithAVFoundation-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
