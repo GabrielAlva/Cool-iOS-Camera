@@ -30,6 +30,9 @@
 
 //Primative Properties
 @property (readwrite) BOOL animationInProgress;
+@property (readwrite) BOOL cameraToggleHidden;
+@property (readwrite) BOOL cameraFlashHidden;
+@property (readwrite) BOOL cameraDismissHidden;
 
 //Object References
 @property (nonatomic, strong) CaptureSessionManager *captureManager;
@@ -39,6 +42,7 @@
 @property (nonatomic, strong) CameraDismissButton *cameraDismiss;
 @property (nonatomic, strong) CameraFocalReticule *focalReticule;
 @property (nonatomic, strong) UIView *topBarView;
+@property (nonatomic, strong) UIColor *topBarBackgroundColor;
 
 //Temporary/Diagnostic properties
 @property (nonatomic, strong) UILabel *ISOLabel, *apertureLabel, *shutterSpeedLabel;
@@ -155,11 +159,12 @@
         
         //Setup visual attribution for bar
         _topBarView.frame  = (CGRect){0,0, topBarSize};
-        _topBarView.backgroundColor = [UIColor colorWithRed: 0.176 green: 0.478 blue: 0.529 alpha: 0.64];
+        _topBarView.backgroundColor = _topBarBackgroundColor == nil ? [UIColor colorWithRed: 0.176 green: 0.478 blue: 0.529 alpha: 0.64] : _topBarBackgroundColor;
         [self addSubview:_topBarView];
         
         //Add the flash button
         _cameraFlash = [CameraFlashButton new];
+        _cameraFlash.hidden = _cameraFlashHidden;
         if (_cameraFlash) {
             _cameraFlash.frame = (CGRect){0,0, barButtonItemSize};
             _cameraFlash.center = CGPointMake(_topBarView.center.x * 0.80, _topBarView.center.y);
@@ -169,6 +174,7 @@
         
         //Add the camera toggle button
         _cameraToggle = [CameraToggleButton new];
+        _cameraToggle.hidden = _cameraToggleHidden;
         if (_cameraToggle) {
             _cameraToggle.frame = (CGRect){0,0, barButtonItemSize};
             _cameraToggle.center = CGPointMake(_topBarView.center.x * 1.20, _topBarView.center.y);
@@ -178,6 +184,7 @@
         
         //Add the camera dismiss button
         _cameraDismiss = [CameraDismissButton new];
+        _cameraDismiss.hidden = _cameraDismissHidden;
         if (_cameraDismiss) {
             _cameraDismiss.frame = (CGRect){0,0, barButtonItemSize};
             _cameraDismiss.center = CGPointMake(20, _topBarView.center.y);
@@ -458,22 +465,22 @@
 
 - (void)setTopBarColor:(UIColor *)topBarColor
 {
-    _topBarView.backgroundColor = topBarColor;
+    _topBarBackgroundColor = topBarColor;
 }
 
 - (void)hideFlashButton
 {
-    _cameraFlash.hidden = YES;
+    _cameraFlashHidden = YES;
 }
 
 - (void)hideCameraToggleButton
 {
-    _cameraToggle.hidden = YES;
+    _cameraToggleHidden = YES;
 }
 
 - (void)hideDismissButton
 {
-    _cameraDismiss.hidden = YES;
+    _cameraDismissHidden = YES;
 }
 
 - (void)dealloc
