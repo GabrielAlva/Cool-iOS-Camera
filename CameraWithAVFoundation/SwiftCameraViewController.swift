@@ -10,6 +10,10 @@ import UIKit
 
 class SwiftCameraViewController: UIViewController {
 
+  override var prefersStatusBarHidden: Bool {
+    return true
+  }
+
   var cameraView: CameraSessionView!
 
   override func viewDidLoad() {
@@ -21,7 +25,7 @@ class SwiftCameraViewController: UIViewController {
     setNeedsStatusBarAppearanceUpdate()
 
     //Instantiate the camera view & assign its frame
-    cameraView = CameraSessionView.init(frame: view.frame)
+    cameraView = CameraSessionView(frame: view.frame)
 
     //Set the camera view's delegate and add it as a subview
     cameraView.delegate = self
@@ -36,14 +40,10 @@ class SwiftCameraViewController: UIViewController {
     view.addSubview(cameraView)
 
     //____________________________Example Customization____________________________
-    // cameraView.setTopBarColor(UIColor.init(red:0.97, green:0.97, blue:0.97, alpha: 0.64))
+    // cameraView.setTopBarColor(UIColor(red:0.97, green:0.97, blue:0.97, alpha: 0.64))
     // cameraView.hideFlashButton() //On iPad flash is not present, hence it wont appear.
     // cameraView.hideCameraToggleButton()
     // cameraView.hideDismissButton()
-  }
-
-  func prefersStatusBarHidden() -> Bool {
-    return true
   }
 
 }
